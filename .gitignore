@@ -1,0 +1,2 @@
+#Ignorar a pasta de saída do MkDocs (ficheiros HTML gerados)
+docs/site/
