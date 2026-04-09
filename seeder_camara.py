@@ -1,6 +1,8 @@
+import sys
 import httpx
 from pprint import pprint
 
+sys.stdout.reconfigure(encoding='utf-8')
 BASE_URL = "https://dadosabertos.camara.leg.br/api/v2"
 
 def buscar_ultimo_discurso(id_camara):
