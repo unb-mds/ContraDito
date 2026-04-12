@@ -1,1 +1,18 @@
-site_name: My Docs
+site_name: ContraDito
+site_description: Documentação do projeto da disciplina de MDS
+
+theme:
+  name: material
+  palette:
+    primary: indigo # Cor da barra superior (igual ao da foto)
+    accent: indigo  # Cor dos botões e links
+  features:
+    - navigation.tabs # Isso aqui transforma o menu lateral em abas superiores!
+    - navigation.top  # Adiciona um botão de "voltar ao topo"
+
+nav:
+  - Home: index.md
+  - Como executar o projeto?: execucao.md
+  - Sprints: sprints.md
+  - API: api.md
+  - Arquitetura: arquitetura.md
