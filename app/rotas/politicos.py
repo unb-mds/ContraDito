@@ -22,10 +22,16 @@ def listar_politicos(
     busca: Optional[str] = Query(None, description="Busca por nome de urna"),
     partido: Optional[str] = Query(None, description="Filtro por partido"),
     cargo: Optional[str] = Query(None, description="Filtro por cargo"),
-    uf: Optional[str] = Query(None, min_length=2, max_length=2, description="Filtro por Estado/UF"),
-    ordem: Optional[str] = Query(None, description="Ordenação: 'mais_coerentes' ou 'menos_coerentes'"),
+    uf: Optional[str] = Query(
+        None, min_length=2, max_length=2, description="Filtro por Estado/UF"
+    ),
+    ordem: Optional[str] = Query(
+        None, description="Ordenação: 'mais_coerentes' ou 'menos_coerentes'"
+    ),
     pagina: int = Query(1, ge=1, description="Número da página"),
-    tamanho: int = Query(20, ge=1, le=100, description="Quantidade de itens por página"),
+    tamanho: int = Query(
+        20, ge=1, le=100, description="Quantidade de itens por página"
+    ),
 ):
     try:
         query = supabase.table("politicos").select("*", count="exact")
