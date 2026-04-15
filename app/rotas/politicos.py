@@ -101,6 +101,7 @@ def buscar_politico_detalhado(
                     postura_extraida_do_texto=p["postura_extraida_do_texto"],
                     voto_oficial_registrado=p["voto_oficial_registrado"],
                     status_coerencia=p["status_coerencia"],
+                    justificativa=p.get("justificativa"),
                 ),
             )
         )

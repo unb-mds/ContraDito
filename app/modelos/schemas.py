@@ -36,6 +36,7 @@ class ResultadoIA(BaseModel):
     postura_extraida_do_texto: str
     voto_oficial_registrado: str
     status_coerencia: bool
+    justificativa: Optional[str] = None
 
 
 class ProvaContradicao(BaseModel):
