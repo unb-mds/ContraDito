@@ -5,14 +5,16 @@ from pprint import pprint
 sys.stdout.reconfigure(encoding='utf-8')
 BASE_URL = "https://dadosabertos.camara.leg.br/api/v2"
 
-def buscar_ultimo_discurso(id_camara):
-    """Busca o último discurso do parlamentar para alimentar a IA."""
+def buscar_ultimo_discurso_relevante(id_camara):
+    """Busca o último discurso do parlamentar, filtrando ruídos protocolares."""
     try:
+        # Agora pedimos 5 discursos para ter margem de escolha
         resp = httpx.get(
             f"{BASE_URL}/deputados/{id_camara}/discursos",
-            params={"itens": 1, 
-                    "ordem": "DESC",
-                    "dataInicio": "2023-01-01"
+            params={
+                "itens": 5, 
+                "ordem": "DESC",
+                "dataInicio": "2023-01-01"
             }, 
             headers={"Accept": "application/json"},
             timeout=30.0
@@ -20,10 +22,15 @@ def buscar_ultimo_discurso(id_camara):
         resp.raise_for_status()
         dados = resp.json().get("dados", [])
         
-        if dados and len(dados) > 0:
-            # Retorna a transcrição do primeiro discurso da lista
-            return dados[0].get("transcricao", "Discurso não transcrito na API.")
-        return "Nenhum discurso encontrado."
+        # O Filtro de Ruído: Passa por cada discurso retornado
+        for discurso in dados:
+            texto = discurso.get("transcricao", "")
+            
+            # Regra de ouro: Se for maior que 150 caracteres, consideramos relevante!
+            if len(texto) > 150:
+                return texto
+                
+        return "Nenhum discurso relevante encontrado após aplicar os filtros."
     except Exception as e:
         return f"Erro ao buscar discurso: {e}"
 
@@ -55,7 +62,7 @@ def buscar_amostra_deputados(quantidade=20):
         status = dados_completos["ultimoStatus"]
         
         # 2. Busca o último discurso (A Mágica Nova!)
-        texto_discurso = buscar_ultimo_discurso(id_camara)
+        texto_discurso = texto_discurso = buscar_ultimo_discurso_relevante(id_camara)
         
         # 3. Monta o Dicionário completo
         politico = {
@@ -81,7 +88,7 @@ def salvar_no_supabase(lista_politicos):
         print(f"✅ [Mock DB] Preparado para o banco: {politico['nome_urna']} ({politico['partido']}-{politico['uf']})")
 
 if __name__ == "__main__":
-    amostra = buscar_amostra_deputados(20)
+    amostra = buscar_amostra_deputados(513)
     salvar_no_supabase(amostra)
     
     print("\nExemplo da estrutura do primeiro político com discurso:")
