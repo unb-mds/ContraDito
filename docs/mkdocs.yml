@@ -4,15 +4,19 @@ site_description: Documentação do projeto da disciplina de MDS
 theme:
   name: material
   palette:
-    primary: indigo # Cor da barra superior (igual ao da foto)
-    accent: indigo  # Cor dos botões e links
+    primary: custom # Cor da barra superior 
+    accent: custom  # Cor dos botões e links
   features:
     - navigation.tabs # Isso aqui transforma o menu lateral em abas superiores!
     - navigation.top  # Adiciona um botão de "voltar ao topo"
 
 nav:
   - Home: index.md
+  - Transparência e LGPD: lgpd.md
+  - Arquitetura: arquitetura.md
   - Como executar o projeto?: execucao.md
   - Sprints: sprints.md
   - API: api.md
-  - Arquitetura: arquitetura.md
+
+extra_css:
+  - stylesheets/extra.css
