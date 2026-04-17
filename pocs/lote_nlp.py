@@ -12,21 +12,23 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 llm = OllamaLLM(model="llama3", temperature=0.0, format="json")
 
 template = """
-Analise o discurso parlamentar e extraia as informações solicitadas.
+Você é um analista político imparcial e técnico. Analise o discurso parlamentar e extraia as informações estritamente no formato JSON.
 
 RETORNO ESPERADO (JSON):
 {{
-  "raciocinio_livre": "Pense em voz alta sobre o texto (MÁXIMO DE 3 FRASES).",
-  "postura_extraida": "FAVORÁVEL ou CONTRÁRIO",
-  "topico_identificado": "Escolha APENAS UMA tag: [Economia, Saúde, Educação, Segurança, Infraestrutura, Meio Ambiente, Direitos Humanos, Corrupção, Outros]",
-  "justificativa": "Resuma o motivo em no máximo 15 palavras."
+  "raciocinio_livre": "Pense em voz alta sobre o discurso. Qual é o contexto? O que o deputado realmente quer dizer? (MÁXIMO DE 3 FRASES).",
+  "alvo_principal": "Em no máximo 5 palavras, defina o projeto, atitude ou ideia central que o orador está julgando. (Ex: 'Aumento de impostos', 'Corrupção no governo').",
+  "postura_extraida": "Em relação ao 'alvo_principal' que você definiu, o orador é: [A FAVOR] ou [CONTRA]?",
+  "topico_identificado": "Escolha EXATAMENTE UMA tag: [Economia, Saúde, Educação, Segurança, Infraestrutura, Meio Ambiente, Direitos Humanos, Administração Pública, Ética e Decoro, Justiça e Direito, Homenagens e Datas, Agricultura, Outros]",
+  "tom_discurso": "Escolha EXATAMENTE UM tom: [AGRESSIVO, CONCILIADOR, TÉCNICO, IRÔNICO, APELATIVO, INFORMATIVO]",
+  "justificativa": "Resuma o motivo da postura em no máximo 15 palavras."
 }}
 
-REGRAS:
-- A 'postura_extraida' deve refletir a intenção final do parlamentar.
-- Ignore ataques a opositores; foque estritamente no tema central.
-- O 'topico_identificado' DEVE ser uma opção exata da lista.
-- Responda estritamente no formato JSON, sem nenhum texto extra.
+REGRAS CRÍTICAS DE EXECUÇÃO:
+1. O 'topico_identificado' e o 'tom_discurso' NÃO PODEM ser palavras inventadas. Use apenas as opções listadas nas chaves.
+2. A 'postura_extraida' DEVE ser calculada estritamente em relação ao 'alvo_principal'. Se o alvo é 'Corrupção' e o deputado ataca a corrupção, a postura é CONTRA.
+3. Ignore xingamentos pessoais e desvios; foque no mérito.
+4. Responda APENAS com o objeto JSON.
 
 Discurso: {discurso}
 """
@@ -52,22 +54,22 @@ def calcular_coerencia_booleana(postura_ia, voto_oficial):
     postura = str(postura_ia).strip().upper()
     voto = str(voto_oficial).strip().upper()
 
-    if (postura == "FAVORÁVEL" and voto == "SIM") or (postura == "CONTRÁRIO" and voto == "NÃO"):
+    if (postura == "A FAVOR" and voto == "SIM") or (postura == "CONTRA" and voto == "NÃO"):
         return True
     else:
         return False
 
 def rodar_fase_ia():
-    print("🧠 FASE 1: Buscando discursos novos para análise da IA...")
+    print("FASE 1: Buscando discursos novos para análise da IA...")
     try:
         resposta_db = supabase.table("provas_contradicao").select("*").is_("postura_extraida", "null").execute()
         pendentes = resposta_db.data
     except Exception as e:
-        print(f"❌ Erro ao conectar com Supabase na Fase 1: {e}")
+        print(f"Erro ao conectar com Supabase na Fase 1: {e}")
         return
 
     if not pendentes:
-        print("   ✅ Nenhum texto novo para a IA ler.")
+        print("Nenhum texto novo para a IA ler.")
         return
 
     for linha in pendentes:
@@ -84,7 +86,7 @@ def rodar_fase_ia():
             # ==========================================
             # 🔍 LUPA DE DEBUG: Printando o texto cru da IA
             # ==========================================
-            print(f"\n--- 🕵️ RAW DA IA (ID {id_registro}) ---")
+            print(f"\n---RAW DA IA (ID {id_registro}) ---")
             print(resposta_ia)
             print("----------------------------------\n")
             # ==========================================
@@ -94,21 +96,24 @@ def rodar_fase_ia():
             dados_extraidos = json.loads(json_limpo)
             # ---------------------
             
+            # ---> A EXCLUSÃO DO PENSAMENTO <---
             if "raciocinio_livre" in dados_extraidos:
                 del dados_extraidos["raciocinio_livre"]
             
             supabase.table("provas_contradicao").update({
                 "postura_extraida": dados_extraidos.get("postura_extraida"),
                 "topico_identificado": dados_extraidos.get("topico_identificado"),
-                "justificativa": dados_extraidos.get("justificativa")
+                "justificativa": dados_extraidos.get("justificativa"),
+                "tom_discurso": dados_extraidos.get("tom_discurso") # Adicionado na Sprint 4
             }).eq("id", id_registro).execute()
             
-            print(f"      ✔ IA concluiu ID {id_registro} | Tópico: {dados_extraidos.get('topico_identificado')}")
+            # Print atualizado para mostrar o alvo que a IA mirou antes de dar o veredito
+            print(f"      ✔ IA concluiu ID {id_registro} | Alvo: {dados_extraidos.get('alvo_principal')} | Tópico: {dados_extraidos.get('topico_identificado')}")
             
         except json.JSONDecodeError:
-            print(f"   ❌ Erro (ID {id_registro}): IA não retornou um JSON válido.")
+            print(f"   Erro (ID {id_registro}): IA não retornou um JSON válido.")
         except Exception as e:
-            print(f"   ❌ Erro na IA (ID {id_registro}): {e}")
+            print(f"   Erro na IA (ID {id_registro}): {e}")
 
 def rodar_fase_logica():
     print("⚡ FASE 2: Cruzando posturas com votos no painel...")
@@ -121,11 +126,11 @@ def rodar_fase_logica():
             .execute()
         pendentes_logica = resposta_db.data
     except Exception as e:
-        print(f"❌ Erro ao conectar com Supabase na Fase 2: {e}")
+        print(f"Erro ao conectar com Supabase na Fase 2: {e}")
         return
 
     if not pendentes_logica:
-        print("   ✅ Nenhum cruzamento lógico pendente.")
+        print("   Nenhum cruzamento lógico pendente.")
         return
 
     for linha in pendentes_logica:
@@ -142,7 +147,7 @@ def rodar_fase_logica():
             print(f"   ↳ ID {id_registro} atualizado! Postura: {postura} | Voto: {voto} -> Coerente: {status}")
 
 def processar_lote():
-    print("INICIANDO WORKER DE ETL - CONTRADITO 🚀")
+    print("INICIANDO WORKER DE ETL - CONTRADITO")
     print("=" * 50)
     inicio = time.time()
     
