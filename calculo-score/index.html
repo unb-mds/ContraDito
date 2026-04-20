@@ -11,8 +11,10 @@
       
       
       
-        <link rel="prev" href="../sprints/sprint-0/">
+        <link rel="prev" href="../arquitetura/">
       
+      
+        <link rel="next" href="../execucao/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +22,7 @@
     
     
       
-        <title>API - ContraDito</title>
+        <title>Como Calculamos o Score - ContraDito</title>
       
     
     
@@ -72,6 +74,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#como-calculamos-o-score-de-coerencia" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -102,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              API
+              Como Calculamos o Score
             
           </span>
         </div>
@@ -219,9 +226,11 @@
         
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../calculo-score/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
     
@@ -271,11 +280,9 @@
         
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../api/" class="md-tabs__link">
         
   
     
@@ -381,9 +388,29 @@
       
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../calculo-score/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Como Calculamos o Score
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -392,6 +419,87 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-fluxo-de-calculo-passo-a-passo" class="md-nav__link">
+    O Fluxo de Cálculo (Passo a Passo)
+  </a>
+  
+    <nav class="md-nav" aria-label="O Fluxo de Cálculo (Passo a Passo)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-extracao-de-entidades-e-posicionamento-o-dito" class="md-nav__link">
+    1. Extração de Entidades e Posicionamento (O "Dito")
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mapeamento-de-votos-oficiais-o-feito" class="md-nav__link">
+    2. Mapeamento de Votos Oficiais (O "Feito")
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-o-cruzamento-de-dados-o-match" class="md-nav__link">
+    3. O Cruzamento de Dados (O Match)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-a-formula-matematica-do-score" class="md-nav__link">
+    4. A Fórmula Matemática do Score
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitacoes-e-mitigacoes" class="md-nav__link">
+    Limitações e Mitigações
+  </a>
+  
+    <nav class="md-nav" aria-label="Limitações e Mitigações">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#os-bastidores-do-passo-1-o-script-de-extracao-seeder" class="md-nav__link">
+    Os Bastidores do Passo 1: O Script de Extração (Seeder)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -480,16 +588,9 @@
       
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -498,7 +599,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -520,6 +620,77 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-fluxo-de-calculo-passo-a-passo" class="md-nav__link">
+    O Fluxo de Cálculo (Passo a Passo)
+  </a>
+  
+    <nav class="md-nav" aria-label="O Fluxo de Cálculo (Passo a Passo)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-extracao-de-entidades-e-posicionamento-o-dito" class="md-nav__link">
+    1. Extração de Entidades e Posicionamento (O "Dito")
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mapeamento-de-votos-oficiais-o-feito" class="md-nav__link">
+    2. Mapeamento de Votos Oficiais (O "Feito")
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-o-cruzamento-de-dados-o-match" class="md-nav__link">
+    3. O Cruzamento de Dados (O Match)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-a-formula-matematica-do-score" class="md-nav__link">
+    4. A Fórmula Matemática do Score
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitacoes-e-mitigacoes" class="md-nav__link">
+    Limitações e Mitigações
+  </a>
+  
+    <nav class="md-nav" aria-label="Limitações e Mitigações">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#os-bastidores-do-passo-1-o-script-de-extracao-seeder" class="md-nav__link">
+    Os Bastidores do Passo 1: O Script de Extração (Seeder)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -534,9 +705,57 @@
                   
 
 
-  <h1>API</h1>
+<h1 id="como-calculamos-o-score-de-coerencia">Como Calculamos o Score de Coerência</h1>
+<p>O <strong>Score de Coerência</strong> é a principal métrica do ContraDito. Ele não é baseado em opiniões políticas, mas sim em um cruzamento analítico e matemático entre o <strong>discurso público</strong> (o que o político diz) e o <strong>voto em plenário</strong> (o que o político faz).</p>
+<p>Abaixo, detalhamos o passo a passo de como a nossa Inteligência Artificial e o nosso motor de regras chegam à nota final de cada parlamentar.</p>
+<hr />
+<h2 id="o-fluxo-de-calculo-passo-a-passo">O Fluxo de Cálculo (Passo a Passo)</h2>
+<h3 id="1-extracao-de-entidades-e-posicionamento-o-dito">1. Extração de Entidades e Posicionamento (O "Dito")</h3>
+<p>Primeiro, coletamos os discursos oficiais do parlamentar na Câmara dos Deputados. Nossa Inteligência Artificial (modelo LLM rodando via Ollama) lê o texto e extrai três informações cruciais:
+* <strong>Tema/Tag:</strong> Qual é o assunto principal? (ex: <em>Reforma Tributária</em>, <em>Privatização</em>, <em>Meio Ambiente</em>).
+* <strong>Posicionamento:</strong> Qual a postura do político sobre o tema? (A favor, Contra ou Neutro).
+* <strong>Trecho (Evidência):</strong> A frase exata que comprova esse posicionamento.</p>
+<h3 id="2-mapeamento-de-votos-oficiais-o-feito">2. Mapeamento de Votos Oficiais (O "Feito")</h3>
+<p>Em paralelo, nosso banco de dados mapeia como esse mesmo parlamentar votou (Sim, Não ou Abstenção) em Projetos de Lei (PLs) e emendas que possuem as mesmas <strong>Tags</strong> identificadas nos discursos.</p>
+<h3 id="3-o-cruzamento-de-dados-o-match">3. O Cruzamento de Dados (O <em>Match</em>)</h3>
+<p>O motor do ContraDito cruza a tag do discurso com a tag do voto e verifica a consistência:
+* <strong>Coerência Positiva:</strong> Discursou "A favor" e votou "Sim" (ou discursou "Contra" e votou "Não").
+* <strong>Contradição (Incoerência):</strong> Discursou "A favor" e votou "Não" (ou vice-versa).
+* <strong>Abstenção/Neutralidade:</strong> Avaliada caso a caso dependendo do impacto da votação.</p>
+<h3 id="4-a-formula-matematica-do-score">4. A Fórmula Matemática do Score</h3>
+<p>O <em>Score de Coerência</em> é uma nota de <strong>[0 a 100]</strong>, calculada com base no percentual de consistência entre os discursos e os votos atrelados à mesma tag. </p>
+<p><em>Fórmula simplificada:</em>
+<strong>Score = (Total de Ações Coerentes / Total de Cruzamentos Válidos) * 100</strong></p>
+<p><em>Exemplo Prático:</em></p>
+<blockquote>
+<p>Se o Deputado X possui 10 cruzamentos válidos (temas onde ele discursou E votou), e em 8 deles o voto seguiu o discurso, seu Score de Coerência será <strong>80</strong>. Os 2 casos divergentes serão listados no perfil dele como <strong>"Provas da Contradição"</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="limitacoes-e-mitigacoes">Limitações e Mitigações</h2>
+<p>Reconhecemos que a política é dinâmica e os políticos podem mudar de opinião ao longo do tempo. Para garantir justiça no cálculo:
+* <strong>Fator Temporal:</strong> Damos prioridade a cruzamentos de discursos e votos que ocorreram na mesma legislatura ou em um espaço de tempo próximo.
+* <strong>Contexto da Votação:</strong> Votos em "Destaques" ou manobras regimentais (que às vezes obrigam o político a votar "Não" no texto-base para aprovar uma emenda) são tratados com cautela pelo nosso modelo para evitar falsos positivos de contradição.</p>
+<h3 id="os-bastidores-do-passo-1-o-script-de-extracao-seeder">Os Bastidores do Passo 1: O Script de Extração (Seeder)</h3>
+<p>Para garantir que a Inteligência Artificial não perca tempo processando ruídos protocolares (como "Obrigado, Sr. Presidente" ou "Passo a palavra"), nosso script de extração em Python (<code>seeder.py</code>) atua como o primeiro filtro do sistema.</p>
+<p>Abaixo, destacamos as regras de negócio aplicadas direto no código antes mesmo do dado chegar ao banco:</p>
+<ol>
+<li><strong>Filtro de Relevância (Tamanho do Texto):</strong> O script consome a API da Câmara (<code>/deputados/{id}/discursos</code>) e ignora automaticamente qualquer transcrição que tenha menos de 150 caracteres.</li>
+<li><strong>Preparação para a IA:</strong> O script cria o objeto do político inicializando o <code>score_coerencia</code> zerado e cria um registro na tabela <code>provas_contradicao</code> com os campos de análise (<code>topico_identificado</code>, <code>postura_extraida</code>, <code>voto_oficial</code>, <code>justificativa</code>) preenchidos como <code>None</code>. Estes "espaços em branco" são o gatilho para o processamento da Inteligência Artificial.</li>
+<li><strong>Idempotência (Upsert):</strong> Utilizamos a função <code>.upsert()</code> do Supabase baseada no ID do parlamentar. Isso garante que o script possa ser rodado múltiplas vezes (rotina diária ou semanal) sem duplicar políticos ou discursos no banco de dados.</li>
+</ol>
+<p><strong>Trecho de destaque (Filtro de Ruído):</strong>
+```python
+def buscar_ultimo_discurso_relevante(id_camara):
+    # ... (código de conexão com a API omitido para brevidade) ...
+    for discurso in dados:
+        texto = discurso.get("transcricao", "")
+        data_hora = discurso.get("dataHoraInicio", "2023-01-01T00:00").split("T")[0]</p>
+<pre><code>    # Regra de Negócio: Ignora discursos curtos/protocolares
+    if len(texto) &gt; 150:
+        return texto, data_hora
 
-
+return "Nenhum discurso relevante encontrado após aplicar os filtros.", "2023-01-01"
+</code></pre>
 
 
 
