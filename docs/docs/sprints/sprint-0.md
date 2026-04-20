@@ -1,0 +1,38 @@
+# Sprint 0 - Fundações e Estudos
+
+**Período:** 24/03/2026 a 31/03/2026
+
+## Descrição
+Nesta Sprint 0, a equipa dedicou-se exclusivamente ao estudo e nivelamento de conhecimentos. Como o projeto **ContraDito** envolve diversas tecnologias e conceitos novos para os membros, dividimos temas fundamentais de engenharia de software para garantir que todos estivessem preparados para o início do desenvolvimento prático.
+
+## Objetivos
+* Nivelar o conhecimento técnico da equipa.
+* Estudar as bases de controlo de versões (Git e GitHub).
+* Compreender metodologias ágeis e engenharia de requisitos.
+* Explorar os conceitos de Arquitetura, Frontend e Backend que serão aplicados ao projeto.
+
+## Backlog da Sprint (Issues)
+Com base no nosso quadro de tarefas no GitHub, os tópicos de estudo foram distribuídos da seguinte forma:
+
+| Issue | Descrição | Responsável | Status |
+| :--- | :--- | :--- | :--- |
+| #1 | Estudo sobre Git e Github | @jot4-ge | [x] Concluído |
+| #2 | Estudo de arquitetura de software | @luizhtmoreira | [x] Concluído |
+| #3 | Estudo: Metodologias Ágeis | @henriquemendeselias | [x] Concluído |
+| #5 | Estudo: O que é Frontend ?? | @G2SBiel | [x] Concluído |
+| #6 | Estudo de Backend | @matheus0346 | [x] Concluído |
+| #7 | Estudo: Requisitos de Software | @lucasaraujoszz | [x] Concluído |
+
+
+## Reuniões
+
+### Reunião de Planeamento
+
+*Não houve reunião da sprint 0 mas nos decidimos por mensagens que cada um seria responsável por um estudo diferente*
+
+* **Data:** N/A
+* **Local:** N/A
+* **Ata:** Definimos que cada membro faria uma pesquisa aprofundada sobre o seu tema (representado pelas tags `estudo` e `documentation` nas issues) e partilharia os resultados com a restante equipa, criando assim uma base de conhecimento partilhada sólida.
+
+## Finalização
+A Sprint 0 foi concluída com sucesso. Todos os membros entregaram e debateram os seus estudos fechando as issues na plataforma. Isto deu-nos a segurança e o alinhamento técnico necessários para avançar para a Sprint 1, onde daremos início ao processo para chegarmos ao Produto Mínimo Viável (MVP).
