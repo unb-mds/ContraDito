@@ -11,6 +11,7 @@ from app.modelos.schemas import (
     ContextoOriginal,
     ResultadoIA,
 )
+
 # Cria o roteador pro main.py
 router = APIRouter(prefix="/api/politicos", tags=["Políticos"])
 
