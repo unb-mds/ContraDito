@@ -11,7 +11,6 @@ from app.modelos.schemas import (
     ContextoOriginal,
     ResultadoIA,
 )
-
 # Cria o roteador pro main.py
 router = APIRouter(prefix="/api/politicos", tags=["Políticos"])
 
@@ -78,7 +77,6 @@ def listar_politicos(
 def buscar_politico_detalhado(
     id_parlamentar: int = Path(..., description="ID interno do político")
 ):
-    # 1. Busca os dados base do político
     res_politico = (
         supabase.table("politicos").select("*").eq("id", id_parlamentar).execute()
     )
@@ -88,7 +86,6 @@ def buscar_politico_detalhado(
 
     politico_data = res_politico.data[0]
 
-    # 2. Busca o histórico de contradições
     res_provas = (
         supabase.table("provas_contradicao")
         .select("*")
@@ -118,7 +115,6 @@ def buscar_politico_detalhado(
                     voto_oficial_registrado=p.get(
                         "voto_oficial_registrado", "Não registrado"
                     ),
-                    # O truque mágico para lidar com Verdadeiro/Falso vazio:
                     status_coerencia=p.get("status_coerencia") is True,
                 ),
             )
