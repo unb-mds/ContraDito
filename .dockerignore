@@ -1,0 +1,12 @@
+.git
+.gitignore
+.github/
+__pycache__/
+*.pyc
+.env
+docs/
+amostras/
+extrair_amostras.py
+parsear_amostras.py
+pocs/
+seeder_camara.py

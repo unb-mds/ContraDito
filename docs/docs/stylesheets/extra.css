@@ -1,0 +1,7 @@
+:root > * {
+  /* Altera a cor principal da barra superior e textos de destaque */
+  --md-primary-fg-color: #0b1c37; 
+  
+  /* Altera a cor dos links e botões quando você passa o mouse */
+  --md-accent-fg-color: #1D4ED8; 
+}
