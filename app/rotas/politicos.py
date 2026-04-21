@@ -96,24 +96,25 @@ def buscar_politico_detalhado(
         .execute()
     )
 
-    # 3. Monta o objeto de resposta mapeando o banco para os Pydantic Models
     provas_formatadas = []
     for p in res_provas.data:
         provas_formatadas.append(
             ProvaContradicao(
                 id=p["id"],
                 contexto=ContextoOriginal(
-                    tipo_documento=p["tipo_documento"],
-                    data_evento=p["data_evento"],
-                    texto_extraido=p["texto_extraido"],
+                    tipo_documento=p.get("tipo_documento", "Desconhecido"),
+                    data_evento=p.get("data_evento", "Data não registrada"),
+                    texto_extraido=p.get("texto_extraido", "Texto indisponível"),
                     link_fonte=p.get("link_fonte"),
                 ),
                 resultado=ResultadoIA(
-                    topico_identificado=p["topico_identificado"],
-                    postura_extraida_do_texto=p["postura_extraida_do_texto"],
-                    voto_oficial_registrado=p["voto_oficial_registrado"],
-                    status_coerencia=p["status_coerencia"],
+                    topico_identificado=p.get("topico_identificado", "Tópico não identificado"),
+                    postura_extraida_do_texto=p.get("postura_extraida_do_texto", "Postura não registrada"),
                     justificativa=p.get("justificativa"),
+                    voto_oficial_registrado=p.get("voto_oficial_registrado", "Não registrado"),
+                    
+                    # O truque mágico para lidar com Verdadeiro/Falso vazio:
+                    status_coerencia=p.get("status_coerencia") is True,
                 ),
             )
         )
