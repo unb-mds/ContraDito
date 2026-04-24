@@ -11,7 +11,7 @@ from app.modelos.schemas import (
     ContextoOriginal,
     ResultadoIA,
     BuscaVetorialRequest,
-    ResultadoSimilaridade
+    ResultadoSimilaridade,
 )
 
 # Cria o roteador pro main.py
@@ -127,21 +127,26 @@ def buscar_politico_detalhado(
         politico=PoliticoResponse(**politico_data), provas=provas_formatadas
     )
 
+
 @router.post("/buscar-similares", response_model=list[ResultadoSimilaridade])
 def buscar_discursos_por_similaridade(requisicao: BuscaVetorialRequest):
     try:
-        vetor_mock = [0.015] * 768 
+        vetor_mock = [0.015] * 768
 
         parametros_rpc = {
             "query_embedding": vetor_mock,
             "match_threshold": 0.2,
             "match_count": requisicao.limite,
-            "p_politico_id": requisicao.id_parlamentar
+            "p_politico_id": requisicao.id_parlamentar,
         }
 
-        resposta_rpc = supabase.rpc("buscar_discursos_similares", parametros_rpc).execute()
+        resposta_rpc = supabase.rpc(
+            "buscar_discursos_similares", parametros_rpc
+        ).execute()
 
         return resposta_rpc.data
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erro na busca vetorial no banco: {str(e)}")
+        raise HTTPException(
+            status_code=500, detail=f"Erro na busca vetorial no banco: {str(e)}"
+        )

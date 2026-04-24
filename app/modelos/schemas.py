@@ -57,12 +57,23 @@ class PaginaPoliticos(BaseModel):
     total_paginas: int
     itens: List[PoliticoResponse]
 
+
 class BuscaVetorialRequest(BaseModel):
-    texto_busca: str = Field(..., description="O texto da lei ou tema para buscar similaridade")
-    id_parlamentar: Optional[int] = Field(None, description="Filtro opcional para buscar discursos de um político específico")
-    limite: int = Field(5, ge=1, le=20, description="Quantidade de resultados a retornar")
+    texto_busca: str = Field(
+        ..., description="O texto da lei ou tema para buscar similaridade"
+    )
+    id_parlamentar: Optional[int] = Field(
+        None,
+        description="Filtro opcional para buscar discursos de um político específico",
+    )
+    limite: int = Field(
+        5, ge=1, le=20, description="Quantidade de resultados a retornar"
+    )
+
 
 class ResultadoSimilaridade(BaseModel):
     id: int
     texto_extraido: str
-    similaridade: float = Field(..., description="Score matemático de 0 a 1 (1 = idêntico)")
+    similaridade: float = Field(
+        ..., description="Score matemático de 0 a 1 (1 = idêntico)"
+    )
