@@ -3,6 +3,8 @@ import httpx
 import asyncio
 import hashlib
 from app.bancos.supabase import supabase
+from utils.cleaner import limpar_texto_discurso
+from utils.ai_mock import gerar_embedding_mock
 
 sys.stdout.reconfigure(encoding="utf-8")
 BASE_URL_CAMARA = "https://dadosabertos.camara.leg.br/api/v2"
@@ -83,13 +85,20 @@ async def processar_deputado(client, dep, semaphore, lista_politicos, lista_prov
             })
 
             for texto, data in discursos:
+                texto_limpo = limpar_texto_discurso(texto)
+                if not texto_limpo or len(texto_limpo) < 50: # descarta ruídos
+                    continue
+                    
+                vetor_embedding = gerar_embedding_mock(texto_limpo) # mock vetor
+
                 lista_provas.append({
                     "politico_id": id_camara,
                     "tipo_documento": "Discurso",
                     "data_evento": data,
-                    "texto_extraido": texto,
-                    "hash_discurso": gerar_hash_discurso(texto),
+                    "texto_extraido": texto_limpo,
+                    "hash_discurso": gerar_hash_discurso(texto_limpo),
                     "link_fonte": f"https://www.camara.leg.br/deputados/{id_camara}",
+                    "embedding": vetor_embedding
                 })
             print(f"✅ Câmara | {nome_urna} ({len(discursos)} discursos)")
         except Exception as e:
@@ -162,13 +171,20 @@ async def processar_senador(client, senador_data, semaphore, lista_politicos, li
             })
 
             for texto, data in discursos:
+                texto_limpo = limpar_texto_discurso(texto)
+                if not texto_limpo or len(texto_limpo) < 50: # descarta ruídos
+                    continue
+                    
+                vetor_embedding = gerar_embedding_mock(texto_limpo) # mock vetor
+
                 lista_provas.append({
                     "politico_id": id_banco,
                     "tipo_documento": "Discurso",
                     "data_evento": data,
-                    "texto_extraido": texto,
-                    "hash_discurso": gerar_hash_discurso(texto),
+                    "texto_extraido": texto_limpo,
+                    "hash_discurso": gerar_hash_discurso(texto_limpo),
                     "link_fonte": f"https://www25.senado.leg.br/web/senadores/senador/-/perfil/{id_senado_original}",
+                    "embedding": vetor_embedding
                 })
             print(f"✅ Senado | {nome_urna} ({len(discursos)} discursos)")
         except Exception as e:
