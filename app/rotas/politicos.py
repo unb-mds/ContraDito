@@ -13,6 +13,10 @@ from app.modelos.schemas import (
     BuscaVetorialRequest,
     ResultadoSimilaridade,
 )
+from utils.motor_nlp import MotorNLP
+
+print("Carregando Motor SBERT para buscas na API...")
+motor_ia = MotorNLP()
 
 # Cria o roteador pro main.py
 router = APIRouter(prefix="/api/politicos", tags=["Políticos"])
@@ -129,12 +133,17 @@ def buscar_politico_detalhado(
 
 
 @router.post("/buscar-similares", response_model=list[ResultadoSimilaridade])
-def buscar_discursos_por_similaridade(requisicao: BuscaVetorialRequest):
+async def buscar_discursos_por_similaridade(requisicao: BuscaVetorialRequest):
     try:
-        vetor_mock = [0.015] * 768
+        vetor = await motor_ia.gerar_embedding(requisicao.texto_busca)
+
+        if not vetor:
+            raise HTTPException(
+                status_code=400, detail="Texto de busca inválido ou muito curto."
+            )
 
         parametros_rpc = {
-            "query_embedding": vetor_mock,
+            "query_embedding": vetor,
             "match_threshold": 0.2,
             "match_count": requisicao.limite,
             "p_politico_id": requisicao.id_parlamentar,
