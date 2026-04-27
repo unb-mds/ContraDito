@@ -7,10 +7,15 @@ Com o esqueleto arquitetural validado na Sprint anterior, a Sprint 03 teve como 
 
 ## Objetivos e Requisitos do MVP
 Durante a reunião de planejamento, a equipe fechou o escopo dos requisitos essenciais a serem entregues:
+
 * **Descoberta:** Barra de busca global (incluindo o "nome de urna" oficial) e filtros de listagem por Partido, Cargo e Estado.
 * **Raio-X do Parlamentar:** Tela de perfil exibindo o *Score de Coerência* visual e as *Tags* de postura.
 * **Provas da Contradição:** Tabela de comparação direta (O que foi dito *vs.* O que foi votado).
-* **Transparência:** Link direto para as fontes oficiais e informações sobre o cálculo do Score.
+* **Transparência:**
+
+url câmara: https://dadosabertos.camara.leg.br/api/v2
+
+url senado: https://legis.senado.leg.br/dadosabertos
 
 ## Backlog e Responsabilidades
 | Tarefa | Responsável | Status |
@@ -24,6 +29,7 @@ Durante a reunião de planejamento, a equipe fechou o escopo dos requisitos esse
 
 ## Cronograma de Execução (6 Dias)
 Para garantir que as dependências não bloqueassem o time, o Scrum Master estabeleceu a seguinte esteira de execução:
+
 * **Dias 1-2:** O Contrato de API (JSON) foi selado; Banco atualizado e a carga inicial de deputados foi realizada no Supabase.
 * **Dias 3-4:** A IA processou os deputados inseridos no banco; O Front-end iniciou o consumo da busca com base no contrato estabelecido.
 * **Dia 5:** Integração final — validação do clique da busca para a abertura do perfil com o score real.
