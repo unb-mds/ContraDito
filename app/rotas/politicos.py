@@ -3,6 +3,7 @@ from fastapi import APIRouter, Query, HTTPException, Path
 from typing import Optional
 from app.bancos.supabase import supabase
 from fastapi_cache.decorator import cache
+import httpx
 from app.modelos.schemas import (
     PaginaPoliticos,
     PoliticoResponse,
@@ -13,10 +14,6 @@ from app.modelos.schemas import (
     BuscaVetorialRequest,
     ResultadoSimilaridade,
 )
-from utils.motor_nlp import MotorNLP
-
-print("Carregando Motor SBERT para buscas na API...")
-motor_ia = MotorNLP()
 
 # Cria o roteador pro main.py
 router = APIRouter(prefix="/api/politicos", tags=["Políticos"])
@@ -79,7 +76,6 @@ def listar_politicos(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro interno: {str(e)}")
 
-
 @router.get("/{id_parlamentar}", response_model=PerfilPoliticoDetalhado)
 def buscar_politico_detalhado(
     id_parlamentar: int = Path(..., description="ID interno do político")
@@ -135,15 +131,25 @@ def buscar_politico_detalhado(
 @router.post("/buscar-similares", response_model=list[ResultadoSimilaridade])
 async def buscar_discursos_por_similaridade(requisicao: BuscaVetorialRequest):
     try:
-        vetor = await motor_ia.gerar_embedding(requisicao.texto_busca)
+        async with httpx.AsyncClient() as client:
+            try:
+                resposta_worker = await client.post(
+                    "http://workwe:8001/gerar-embedding", 
+                    json={"texto": requisicao.texto_busca},
+                    timeout=15.0
+                )
+                resposta_worker.raise_for_status()
+            except httpx.RequestError:
+                raise HTTPException(status_code=503, detail="Serviço NLP indisponível no Worker.")
 
-        if not vetor:
-            raise HTTPException(
-                status_code=400, detail="Texto de busca inválido ou muito curto."
-            )
+            dados_ia = resposta_worker.json()
+            vetor_real = dados_ia.get("embedding")
+
+            if not vetor_real:
+                raise HTTPException(status_code=400, detail="A IA não conseguiu processar o texto de busca.")
 
         parametros_rpc = {
-            "query_embedding": vetor,
+            "query_embedding": vetor_real,
             "match_threshold": 0.2,
             "match_count": requisicao.limite,
             "p_politico_id": requisicao.id_parlamentar,
@@ -155,7 +161,9 @@ async def buscar_discursos_por_similaridade(requisicao: BuscaVetorialRequest):
 
         return resposta_rpc.data
 
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(
-            status_code=500, detail=f"Erro na busca vetorial no banco: {str(e)}"
+            status_code=500, detail=f"Erro interno na busca vetorial: {str(e)}"
         )
