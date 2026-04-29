@@ -135,7 +135,7 @@ async def buscar_discursos_por_similaridade(requisicao: BuscaVetorialRequest):
         async with httpx.AsyncClient() as client:
             try:
                 resposta_worker = await client.post(
-                    "http://workwe:8001/gerar-embedding",
+                    "http://worker:8001/gerar-embedding",
                     json={"texto": requisicao.texto_busca},
                     timeout=15.0,
                 )
