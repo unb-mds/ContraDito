@@ -1,58 +1,57 @@
 # Como Calculamos o Score de Coerência
 
-O **Score de Coerência** é a principal métrica do ContraDito. Ele não é baseado em opiniões políticas, mas sim em um cruzamento analítico e matemático entre o **discurso público** (o que o político diz) e o **voto em plenário** (o que o político faz).
+O **Score de Coerência** é a principal métrica do ContraDito. Ele não é baseado em opiniões políticas, mas sim num cruzamento analítico, semântico e matemático entre o que o parlamentar afirma nos seus discursos e como ele efetivamente vota nos projetos de lei.
 
-Abaixo, detalhamos o passo a passo de como a nossa Inteligência Artificial e o nosso motor de regras chegam à nota final de cada parlamentar.
+Abaixo, detalhamos o passo a passo de como a nossa arquitetura de Inteligência Artificial e o nosso motor de busca vetorial chegam à nota final.
 
 ---
 
 ## O Fluxo de Cálculo (Passo a Passo)
 
-### 1. Extração de Entidades e Posicionamento (O "Dito")
-Primeiro, coletamos os discursos oficiais do parlamentar na Câmara dos Deputados. Nossa Inteligência Artificial (modelo LLM rodando via Ollama) lê o texto e extrai três informações cruciais:
-* **Tema/Tag:** Qual é o assunto principal? (ex: *Reforma Tributária*, *Privatização*, *Meio Ambiente*).
-* **Posicionamento:** Qual a postura do político sobre o tema? (A favor, Contra ou Neutro).
-* **Trecho (Evidência):** A frase exata que comprova esse posicionamento.
+### 1. Vetorização Semântica (O "Dito")
+Primeiro, coletamos os discursos oficiais do parlamentar na Câmara dos Deputados. Após a limpeza de ruídos, o texto não é classificado por tags rígidas. Utilizamos o modelo **SBERT** (`paraphrase-multilingual-mpnet-base-v2`) para converter o discurso num **Embedding** (um vetor matemático de 768 dimensões). 
+Este processo transforma o significado e a intenção da fala em coordenadas matemáticas, preservando nuances que uma simples tag ignoraria.
 
 ### 2. Mapeamento de Votos Oficiais (O "Feito")
-Em paralelo, nosso banco de dados mapeia como esse mesmo parlamentar votou (Sim, Não ou Abstenção) em Projetos de Lei (PLs) e emendas que possuem as mesmas **Tags** identificadas nos discursos.
+Em paralelo, o nosso banco de dados mapeia os votos oficiais (Sim, Não ou Abstenção) em Projetos de Lei (PLs). A ementa de cada projeto também é convertida num vetor matemático através do mesmo modelo de embeddings, garantindo que "Dito" e "Feito" falem a mesma linguagem matemática.
 
-### 3. O Cruzamento de Dados (O *Match*)
-O motor do ContraDito cruza a tag do discurso com a tag do voto e verifica a consistência:
-* **Coerência Positiva:** Discursou "A favor" e votou "Sim" (ou discursou "Contra" e votou "Não").
-* **Contradição (Incoerência):** Discursou "A favor" e votou "Não" (ou vice-versa).
-* **Abstenção/Neutralidade:** Avaliada caso a caso dependendo do impacto da votação.
+### 3. O Cruzamento Matemático (O *Match*)
+O motor do ContraDito utiliza a extensão **`pgvector`** no Supabase para calcular a **Similaridade de Cosseno** entre os vetores. 
+* Se a similaridade é alta, significa que o discurso e a lei tratam do mesmo assunto semântico.
+* O sistema recupera esse "par ideal" e aciona o **Llama 3** para confirmar a consistência:
+    * **Coerência Positiva:** O discurso defende a pauta e o voto foi favorável (ou vice-versa).
+    * **Contradição (Incoerência):** O discurso aponta para um lado, mas o voto registado foi na direção oposta.
 
 ### 4. A Fórmula Matemática do Score
-O *Score de Coerência* é uma nota de **[0 a 100]**, calculada com base no percentual de consistência entre os discursos e os votos atrelados à mesma tag. 
+O *Score de Coerência* é uma nota de **[0 a 100]**, calculada com base no percentual de consistência nos cruzamentos validados pela busca vetorial.
 
 *Fórmula simplificada:*
 **Score = (Total de Ações Coerentes / Total de Cruzamentos Válidos) * 100**
 
 *Exemplo Prático:*
-> Se o Deputado X possui 10 cruzamentos válidos (temas onde ele discursou E votou), e em 8 deles o voto seguiu o discurso, seu Score de Coerência será **80**. Os 2 casos divergentes serão listados no perfil dele como **"Provas da Contradição"**.
+> Se o sistema identificou 10 cruzamentos com alta similaridade semântica, e em 8 deles o parlamentar foi coerente entre fala e voto, o seu Score será **80**.
 
 ---
 
 ## Limitações e Mitigações
-Reconhecemos que a política é dinâmica e os políticos podem mudar de opinião ao longo do tempo. Para garantir justiça no cálculo:
-* **Fator Temporal:** Damos prioridade a cruzamentos de discursos e votos que ocorreram na mesma legislatura ou em um espaço de tempo próximo.
-* **Contexto da Votação:** Votos em "Destaques" ou manobras regimentais (que às vezes obrigam o político a votar "Não" no texto-base para aprovar uma emenda) são tratados com cautela pelo nosso modelo para evitar falsos positivos de contradição.
+Para garantir justiça e evitar punições por mudanças naturais de contexto:
+* **Fator Temporal:** Priorizamos cruzamentos entre discursos e votos próximos no tempo ou dentro da mesma legislatura.
+* **Contexto Político:** O motor LLM analisa se votos em "Destaques" ou manobras regimentais justificam uma aparente mudança de posicionamento, garantindo que a nota reflita a intenção real.
 
-### Os Bastidores do Passo 1: O Script de Extração (Seeder)
+---
 
-Para garantir que a Inteligência Artificial não perca tempo processando ruídos protocolares (como "Obrigado, Sr. Presidente" ou "Passo a palavra"), nosso script de extração em Python (`seeder.py`) atua como o primeiro filtro do sistema.
+## Os Bastidores do Passo 1: O Script de Extração (Seeder)
 
-Abaixo, destacamos as regras de negócio aplicadas direto no código antes mesmo do dado chegar ao banco:
+Para garantir que o processamento vetorial não seja prejudicado por ruídos protocolares (como "Obrigado, Sr. Presidente"), aplicamos regras de negócio diretamente no código de extração:
 
-1. **Filtro de Relevância (Tamanho do Texto):** O script consome a API da Câmara (`/deputados/{id}/discursos`) e ignora automaticamente qualquer transcrição que tenha menos de 150 caracteres.
-2. **Preparação para a IA:** O script cria o objeto do político inicializando o `score_coerencia` zerado e cria um registro na tabela `provas_contradicao` com os campos de análise (`topico_identificado`, `postura_extraida`, `voto_oficial`, `justificativa`) preenchidos como `None`. Estes "espaços em branco" são o gatilho para o processamento da Inteligência Artificial.
-3. **Idempotência (Upsert):** Utilizamos a função `.upsert()` do Supabase baseada no ID do parlamentar. Isso garante que o script possa ser rodado múltiplas vezes (rotina diária ou semanal) sem duplicar políticos ou discursos no banco de dados.
+1. **Filtro de Relevância:** O script ignora automaticamente qualquer transcrição excessivamente curta (abaixo de 150 caracteres).
+2. **Preparação de Dados:** O objeto do político é inicializado e as tabelas de provas são preparadas para receber os novos cruzamentos.
+3. **Idempotência (Upsert):** Utilizamos a função `.upsert()` para garantir que atualizações de discursos não gerem duplicidade de registros.
 
-**Trecho de destaque (Filtro de Ruído):**
+**Trecho de destaque (Filtro de Ruído em Python):**
 ```python
 def buscar_ultimo_discurso_relevante(id_camara):
-    # ... (código de conexão com a API omitido para brevidade) ...
+    # ... (conexão com API) ...
     for discurso in dados:
         texto = discurso.get("transcricao", "")
         data_hora = discurso.get("dataHoraInicio", "2023-01-01T00:00").split("T")[0]
@@ -61,4 +60,4 @@ def buscar_ultimo_discurso_relevante(id_camara):
         if len(texto) > 150:
             return texto, data_hora
 
-    return "Nenhum discurso relevante encontrado após aplicar os filtros.", "2023-01-01"
+    return "Nenhum discurso relevante encontrado.", "2023-01-01"

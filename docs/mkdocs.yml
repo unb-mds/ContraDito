@@ -14,6 +14,8 @@ nav:
   - Home: index.md
   - Transparência e LGPD: lgpd.md
   - Arquitetura: arquitetura.md
+  - Decisões Arquiteturais (ADRs):
+      - ADR 001 - RAG e Vetores: adrs/adr-001.md
   - Como Calculamos o Score: calculo-score.md
   - Como executar o projeto?: execucao.md
   - Sprints:
@@ -21,6 +23,8 @@ nav:
       - Sprint 1: sprints/sprint-1.md
       - Sprint 2: sprints/sprint-2.md
       - Sprint 3: sprints/sprint-3.md
+      - Sprint 4: sprints/sprint-4.md
+      - Sprint 5: sprints/sprint-5.md
   - API: api.md
 
 extra_css:
