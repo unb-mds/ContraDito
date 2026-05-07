@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="../frontend/">
+        <link rel="prev" href="../supabase/">
       
       
-        <link rel="next" href="../supabase/">
+        <link rel="next" href="../execucao/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Engenharia de Dados (ETL) - ContraDito</title>
+        <title>Motor NLP e RAG - ContraDito</title>
       
     
     
@@ -75,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#o-mapa-do-etl-ingestao-e-processamento-de-dados" class="md-skip">
+        <a href="#especificacao-tecnica-motor-nlp-e-pipeline-rag" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Engenharia de Dados (ETL)
+              Motor NLP e RAG
             
           </span>
         </div>
@@ -860,29 +860,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Engenharia de Dados (ETL)
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../etl-dados/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -891,101 +871,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-ciclo-de-vida-do-dado-e-arquitetura" class="md-nav__link">
-    1. Ciclo de Vida do Dado e Arquitetura
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-fontes-primarias-e-endpoints-consumidos" class="md-nav__link">
-    2. Fontes Primárias e Endpoints Consumidos
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Fontes Primárias e Endpoints Consumidos">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#camara-dos-deputados-apiv2" class="md-nav__link">
-    Câmara dos Deputados (/api/v2)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#senado-federal" class="md-nav__link">
-    Senado Federal
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-estrutura-de-dados-no-supabase-provas_contradicao" class="md-nav__link">
-    3. Estrutura de Dados no Supabase (provas_contradicao)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-regras-de-negocio-e-transformacao-cleanerpy" class="md-nav__link">
-    4. Regras de Negócio e Transformação (cleaner.py)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-rotina-de-execucao-e-carga" class="md-nav__link">
-    5. Rotina de Execução e Carga
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Rotina de Execução e Carga">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#carga-historica-fatiada-backfilling" class="md-nav__link">
-    Carga Histórica Fatiada (Backfilling)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#carga-delta-rotina-continua" class="md-nav__link">
-    Carga Delta (Rotina Contínua)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1015,9 +900,29 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../motor-nlp/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Motor NLP e RAG
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1026,6 +931,115 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-visao-geral-do-fluxo-pipeline-pipe-and-filter" class="md-nav__link">
+    1. Visão Geral do Fluxo (Pipeline Pipe and Filter)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-estrategia-de-processamento-fragmentacao-e-representacao-holistica" class="md-nav__link">
+    2. Estratégia de Processamento: Fragmentação e Representação Holística
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Estratégia de Processamento: Fragmentação e Representação Holística">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-discursos-parlamentares-fragmentacao-local-chunking" class="md-nav__link">
+    2.1. Discursos Parlamentares (Fragmentação Local / Chunking)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-materias-legislativas-representacao-holistica" class="md-nav__link">
+    2.2. Matérias Legislativas (Representação Holística)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-o-dicionario-semantico-justificativa-do-modelo-de-embedding" class="md-nav__link">
+    3. O "Dicionário Semântico": Justificativa do Modelo de Embedding
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-a-matematica-da-similaridade-distancia-de-cosseno" class="md-nav__link">
+    4. A Matemática da Similaridade: Distância de Cosseno
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-o-coracao-da-inferencia-llama-3-e-fine-tuning-com-lora" class="md-nav__link">
+    5. O Coração da Inferência: Llama 3 e Fine-Tuning com LoRA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-orquestracao-via-langchain" class="md-nav__link">
+    6. Orquestração via LangChain
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-limiar-de-similaridade-threshold-e-validacao-empirica" class="md-nav__link">
+    7. Limiar de Similaridade (Threshold) e Validação Empírica
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-regras-de-integridade-o-vies-temporal" class="md-nav__link">
+    8. Regras de Integridade: O Viés Temporal
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Regras de Integridade: O Viés Temporal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumo-de-componentes-tecnicos" class="md-nav__link">
+    Resumo de Componentes Técnicos
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1267,30 +1281,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-ciclo-de-vida-do-dado-e-arquitetura" class="md-nav__link">
-    1. Ciclo de Vida do Dado e Arquitetura
+  <a href="#1-visao-geral-do-fluxo-pipeline-pipe-and-filter" class="md-nav__link">
+    1. Visão Geral do Fluxo (Pipeline Pipe and Filter)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-fontes-primarias-e-endpoints-consumidos" class="md-nav__link">
-    2. Fontes Primárias e Endpoints Consumidos
+  <a href="#2-estrategia-de-processamento-fragmentacao-e-representacao-holistica" class="md-nav__link">
+    2. Estratégia de Processamento: Fragmentação e Representação Holística
   </a>
   
-    <nav class="md-nav" aria-label="2. Fontes Primárias e Endpoints Consumidos">
+    <nav class="md-nav" aria-label="2. Estratégia de Processamento: Fragmentação e Representação Holística">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#camara-dos-deputados-apiv2" class="md-nav__link">
-    Câmara dos Deputados (/api/v2)
+  <a href="#21-discursos-parlamentares-fragmentacao-local-chunking" class="md-nav__link">
+    2.1. Discursos Parlamentares (Fragmentação Local / Chunking)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#senado-federal" class="md-nav__link">
-    Senado Federal
+  <a href="#22-materias-legislativas-representacao-holistica" class="md-nav__link">
+    2.2. Matérias Legislativas (Representação Holística)
   </a>
   
 </li>
@@ -1301,37 +1315,51 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-estrutura-de-dados-no-supabase-provas_contradicao" class="md-nav__link">
-    3. Estrutura de Dados no Supabase (provas_contradicao)
+  <a href="#3-o-dicionario-semantico-justificativa-do-modelo-de-embedding" class="md-nav__link">
+    3. O "Dicionário Semântico": Justificativa do Modelo de Embedding
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-regras-de-negocio-e-transformacao-cleanerpy" class="md-nav__link">
-    4. Regras de Negócio e Transformação (cleaner.py)
+  <a href="#4-a-matematica-da-similaridade-distancia-de-cosseno" class="md-nav__link">
+    4. A Matemática da Similaridade: Distância de Cosseno
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-rotina-de-execucao-e-carga" class="md-nav__link">
-    5. Rotina de Execução e Carga
+  <a href="#5-o-coracao-da-inferencia-llama-3-e-fine-tuning-com-lora" class="md-nav__link">
+    5. O Coração da Inferência: Llama 3 e Fine-Tuning com LoRA
   </a>
   
-    <nav class="md-nav" aria-label="5. Rotina de Execução e Carga">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-orquestracao-via-langchain" class="md-nav__link">
+    6. Orquestração via LangChain
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-limiar-de-similaridade-threshold-e-validacao-empirica" class="md-nav__link">
+    7. Limiar de Similaridade (Threshold) e Validação Empírica
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-regras-de-integridade-o-vies-temporal" class="md-nav__link">
+    8. Regras de Integridade: O Viés Temporal
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Regras de Integridade: O Viés Temporal">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#carga-historica-fatiada-backfilling" class="md-nav__link">
-    Carga Histórica Fatiada (Backfilling)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#carga-delta-rotina-continua" class="md-nav__link">
-    Carga Delta (Rotina Contínua)
+  <a href="#resumo-de-componentes-tecnicos" class="md-nav__link">
+    Resumo de Componentes Técnicos
   </a>
   
 </li>
@@ -1356,100 +1384,118 @@
                   
 
 
-<h1 id="o-mapa-do-etl-ingestao-e-processamento-de-dados">🗺️ O Mapa do ETL: Ingestão e Processamento de Dados</h1>
-<p><strong>Responsável:</strong> João Guilherme (@jot4-ge)</p>
-<p>Este documento detalha a arquitetura do pipeline de Extração, Transformação e Carga (ETL) do <strong>ContraDito</strong>. O objetivo desta camada é garantir a ingestão robusta de discursos, proposições e votos, aplicando uma higienização extrema para blindar os motores de IA contra ruídos semânticos (princípio de <em>Garbage In, Garbage Out</em>).</p>
+<h1 id="especificacao-tecnica-motor-nlp-e-pipeline-rag">Especificação Técnica: Motor NLP e Pipeline RAG</h1>
+<p><strong>Responsável:</strong> Luiz Moreira (@luizhtmoreira)</p>
+<p>O motor NLP do projeto <strong>contraDito</strong> opera sob o padrão arquitetural <strong>Pipe and Filter</strong>, onde o processamento de dados é decomposto em etapas independentes e modulares. O objetivo central é transformar textos brutos (discursos e ementas) em vereditos estruturados de coerência política, utilizando uma arquitetura de <em>Retrieval-Augmented Generation</em> (RAG).</p>
 <hr />
-<h2 id="1-ciclo-de-vida-do-dado-e-arquitetura">1. Ciclo de Vida do Dado e Arquitetura</h2>
-<p>O dado nasce bruto nos servidores do Governo Federal, passa por uma limpeza rigorosa num script assíncrono, é vetorizado pela IA e descansa no banco de dados para consumo imediato do Front-end.</p>
-<pre><code class="language-mermaid">graph TD
-    A[APIs Federais: Câmara e Senado] --&gt;|HTTP GET Assíncrono| B(Pipeline ETL: Extrator)
-    B --&gt;|JSON Bruto| C{cleaner.py: Higienização}
-    C --&gt;|Descarte de Lixo Sintático| D[Descarte / Log]
-    C --&gt;|Texto Limpo e Estruturado| E(Geração de Hash MD5)
-    E --&gt; F[Vetorização SBERT]
-    F --&gt;|INSERT / UPSERT| G[(Supabase: pgvector)]
-</code></pre>
+<h2 id="1-visao-geral-do-fluxo-pipeline-pipe-and-filter">1. Visão Geral do Fluxo (Pipeline Pipe and Filter)</h2>
+<p>O fluxo segue a seguinte sequência lógica:</p>
+<ol>
+<li><strong>Ingestão e Sanitização:</strong> Recebimento dos dados do ETL e limpeza de ruídos (notas taquigráficas, tags HTML).</li>
+<li><strong>Processamento de Texto (Chunking e Resumos):</strong> Adaptação de textos longos aos limites do modelo, dividindo discursos e sumarizando matérias legislativas.</li>
+<li><strong>Vetorização (Embedding):</strong> Conversão de texto em representações matemáticas densas.</li>
+<li><strong>Persistência Vetorial:</strong> Armazenamento de vetores no Supabase utilizando a extensão <code>pgvector</code>.</li>
+<li><strong>Busca Semântica (Retrieval):</strong> Recuperação dos trechos de discursos contextualmente mais relevantes à matéria votada.</li>
+<li><strong>Orquestração e Inferência (Generation):</strong> Processamento via LangChain e Llama 3 (LoRA Fine-tuned).</li>
+<li><strong>Cálculo e Persistência de Veredito:</strong> Comparação lógica entre intenção inferida e voto real.</li>
+</ol>
 <hr />
-<h2 id="2-fontes-primarias-e-endpoints-consumidos">2. Fontes Primárias e Endpoints Consumidos</h2>
-<p>A arquitetura consome diretamente a infraestrutura de Dados Abertos do Governo, garantindo respaldo na Lei de Acesso à Informação (LAI).</p>
-<h3 id="camara-dos-deputados-apiv2">Câmara dos Deputados (<code>/api/v2</code>)</h3>
-<p><strong>Perfis e Discursos:</strong></p>
+<h2 id="2-estrategia-de-processamento-fragmentacao-e-representacao-holistica">2. Estratégia de Processamento: Fragmentação e Representação Holística</h2>
+<p>Modelos de linguagem baseados na arquitetura Transformer possuem um limite estrito de comprimento de sequência (geralmente de 512 tokens para o modelo SBERT escolhido). Como os textos governamentais frequentemente ultrapassam essa marca, o sistema adota duas abordagens distintas para lidar com a volumetria sem perder contexto:</p>
+<h3 id="21-discursos-parlamentares-fragmentacao-local-chunking">2.1. Discursos Parlamentares (Fragmentação Local / Chunking)</h3>
+<p>Para evitar o truncamento silencioso (onde a IA ignora o final do discurso), o sistema implementa a técnica de <em>Chunking</em>:
+* <strong>Divisão de Texto:</strong> Discursos completos são fatiados em múltiplos fragmentos utilizando o <code>RecursiveCharacterTextSplitter</code> do LangChain.
+* <strong>Sobreposição (Overlap):</strong> Cada fragmento preserva uma percentagem de caracteres do trecho anterior. Isso garante que frases que fazem a transição entre ideias não percam o contexto legislativo.
+* <strong>Impacto Estrutural:</strong> A relação de persistência evolui de <code>1 Discurso : 1 Vetor</code> para <code>1 Discurso : N Fragmentos Vetorizados</code>. Na etapa de RAG, o LLM recebe apenas o trecho exato onde a matéria foi debatida, otimizando o consumo de tokens.</p>
+<h3 id="22-materias-legislativas-representacao-holistica">2.2. Matérias Legislativas (Representação Holística)</h3>
+<p>Diferente dos discursos, os parlamentares votam no mérito do projeto como um todo (PL/PEC). Fragmentar um Projeto de Lei de 50 páginas e buscar semelhança apenas no primeiro fragmento destruiria a semântica da busca.
+* <strong>Âncora Semântica (Ementa):</strong> O sistema prioriza a vetorização da <strong>Ementa</strong> (resumo oficial). Ela é densa, curta, raramente excede os limites de tokens e contém a intenção central da votação.
+* <strong>Resumo Global (Fallback):</strong> Caso a ementa seja vaga ou insuficiente, o pipeline utiliza um LLM para gerar um Resumo Executivo Global da matéria antes da vetorização.
+* <strong>Impacto Estrutural:</strong> Garante que o "todo" da matéria legislativa seja comparado aos fragmentos (<em>chunks</em>) dos discursos, preservando o espírito da lei num único espaço semântico de alta qualidade.</p>
+<hr />
+<h2 id="3-o-dicionario-semantico-justificativa-do-modelo-de-embedding">3. O "Dicionário Semântico": Justificativa do Modelo de Embedding</h2>
+<p>Para que o sistema compreenda a semântica política brasileira, foi selecionado o modelo <strong><code>paraphrase-multilingual-mpnet-base-v2</code></strong> (via SBERT).</p>
+<p><strong>Porquê este modelo?</strong>
+* <strong>Acurácia Multilíngue:</strong> Treinado especificamente para lidar com múltiplos idiomas, incluindo o Português Brasileiro, capturando nuances e gírias do ambiente legislativo.
+* <strong>Arquitetura MPNet:</strong> Combina os benefícios de <em>Masked Language Modeling</em> (MLM) e <em>Permuted Language Modeling</em> (PLM), resultando em embeddings de 768 dimensões com extrema riqueza semântica.
+* <strong>Foco em Paráfrases:</strong> Otimizado para identificar quando dois textos dizem a mesma coisa com palavras diferentes, essencial para correlacionar o linguajar formal e jurídico de uma PEC com o discurso retórico e inflamado de um parlamentar.</p>
+<hr />
+<h2 id="4-a-matematica-da-similaridade-distancia-de-cosseno">4. A Matemática da Similaridade: Distância de Cosseno</h2>
+<p>A recuperação de discursos relevantes no banco de dados vetorial não utiliza busca por palavras-chave, mas sim proximidade geométrica.</p>
+<p>A métrica principal é a <strong>Similaridade de Cosseno</strong>, que mede o cosseno do ângulo entre dois vetores no espaço n-dimensional. Diferente da distância euclidiana, ela ignora a magnitude (tamanho do texto) e foca apenas na direção (conteúdo semântico).</p>
+<p>A fórmula para o cálculo da Similaridade de Cosseno é definida como:</p>
+<p>$$Similaridade(\mathbf{A}, \mathbf{B}) = \frac{\mathbf{A} \cdot \mathbf{B}}{|\mathbf{A}| |\mathbf{B}|}$$</p>
+<p>No Supabase, o cálculo é operado pela <strong>Distância de Cosseno</strong>, onde:</p>
+<p>$$Distância = 1 - Similaridade$$</p>
 <ul>
-<li><code>GET /deputados/{id}/discursos</code> — Captura transcrição, <code>urlVideo</code> e <code>urlTexto</code>.</li>
+<li><strong>Distância próxima de 0:</strong> Textos altamente correlacionados semanticamente.</li>
+<li><strong>Distância próxima de 1:</strong> Textos sem relação aparente.</li>
 </ul>
-<p><strong>Ideias e Ações (PECs, PLs e Votos):</strong></p>
-<ul>
-<li><code>GET /proposicoes?siglaTipo=PEC,PL&amp;ano=2023</code> — Captura a Ementa e o PDF de inteiro teor.</li>
-<li><code>GET /votacoes/{id_votacao}/votos</code> — Retorna a lista nominal: "Deputado X votou Sim/Não".</li>
-</ul>
-<h3 id="senado-federal">Senado Federal</h3>
+<hr />
+<h2 id="5-o-coracao-da-inferencia-llama-3-e-fine-tuning-com-lora">5. O Coração da Inferência: Llama 3 e Fine-Tuning com LoRA</h2>
+<p>A decisão final sobre a postura do parlamentar é tomada pelo modelo <strong>Llama 3</strong>. Para garantir que o modelo atue como um analista político preciso, aplica-se a técnica de <strong>LoRA (Low-Rank Adaptation)</strong>.</p>
+<p>O LoRA permite injetar conhecimento do domínio legislativo brasileiro no Llama 3, treinando apenas uma pequena fração dos parâmetros (matrizes de adaptação). Os benefícios incluem:
+* <strong>Especialização:</strong> Adequação ao formato de textos de PLs, PECs e discursos oficiais.
+* <strong>Estruturação de Saída:</strong> Garantia de que a resposta seja gerada obrigatoriamente em formato JSON estruturado, evitando falhas de <em>parsing</em> na API principal.
+* <strong>Economia Computacional:</strong> Redução drástica na memória de GPU necessária.</p>
+<hr />
+<h2 id="6-orquestracao-via-langchain">6. Orquestração via LangChain</h2>
+<p>O <strong>LangChain</strong> atua como o framework orquestrador do pipeline, responsável por:
+* <strong>Gerenciamento de Prompts:</strong> Injetar dinamicamente a Ementa da votação e os fragmentos de discursos recuperados (<em>top-k chunks</em>).
+* <strong>Cadeias de Processamento (Chains):</strong> Executar a sequência lógica rígida: <em>Recuperar -&gt; Formatar -&gt; Analisar -&gt; Justificar</em>.
+* <strong>Controle de Limites:</strong> Filtrar os fragmentos recuperados para garantir que o <em>prompt</em> montado não exceda o limite de contexto (<em>Context Window</em>) do Llama 3.</p>
+<hr />
+<h2 id="7-limiar-de-similaridade-threshold-e-validacao-empirica">7. Limiar de Similaridade (Threshold) e Validação Empírica</h2>
+<p>O sistema estabelece um <strong>limiar base de 0.2 de distância de cosseno</strong> para aprovar a relevância de um fragmento de discurso. Se nenhum fragmento atingir este limiar, o modelo LLM não é acionado, evitando inferências baseadas em "alucinações" e poupando processamento.</p>
 <blockquote>
-<p><strong>Nota de Implementação:</strong> Para evitar colisão de Chaves Primárias no banco, aplica-se um offset de <code>+1.000.000</code> nos IDs dos Senadores.</p>
+<p><strong>Estratégia de Ajuste Dinâmico:</strong> Este valor de threshold será rigorosamente ajustado durante a fase de validação. Testes empíricos e métricas de <em>Precision/Recall</em> serão aplicados contra dados históricos reais para encontrar a linha de corte exata.</p>
 </blockquote>
-<ul>
-<li><code>GET /materia/pesquisa?sigla=PEC,PL</code></li>
-<li><code>GET /votacao/materia/{codigo_da_materia}</code> — Captura a votação nominal dos senadores.</li>
-</ul>
 <hr />
-<h2 id="3-estrutura-de-dados-no-supabase-provas_contradicao">3. Estrutura de Dados no Supabase (<code>provas_contradicao</code>)</h2>
-<p>A tabela central de inteligência do sistema é a <code>provas_contradicao</code>. Abaixo, detalhamos os campos críticos que sustentam o RAG:</p>
+<h2 id="8-regras-de-integridade-o-vies-temporal">8. Regras de Integridade: O Viés Temporal</h2>
+<p>Para sustentar a ética analítica do Score de Coerência, o motor NLP impõe um filtro restritivo temporal inquebrável: <strong>Nenhum discurso proferido após a data da votação será considerado pelo cálculo de RAG.</strong> Isto blinda o sistema contra o viés de dados do futuro, julgando o parlamentar exclusivamente pelas convicções públicas que ele possuía no exato momento da votação.</p>
+<hr />
+<h3 id="resumo-de-componentes-tecnicos">Resumo de Componentes Técnicos</h3>
 <table>
 <thead>
 <tr>
-<th style="text-align: left;">Campo</th>
-<th style="text-align: left;">Tipo</th>
-<th style="text-align: left;">Descrição</th>
+<th style="text-align: left;">Componente</th>
+<th style="text-align: left;">Tecnologia</th>
+<th style="text-align: left;">Função</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code>politico_id</code></td>
-<td style="text-align: left;">FK</td>
-<td style="text-align: left;">ID do parlamentar (com offset de +1M para Senadores).</td>
+<td style="text-align: left;"><strong>Embeddings</strong></td>
+<td style="text-align: left;">SBERT (mpnet-base-v2)</td>
+<td style="text-align: left;">Transformação de textos em tensores matemáticos.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>texto_extraido</code></td>
-<td style="text-align: left;">TEXT</td>
-<td style="text-align: left;">O texto 100% higienizado pelo <code>cleaner.py</code>, pronto para vetorização.</td>
+<td style="text-align: left;"><strong>Processamento de Textos</strong></td>
+<td style="text-align: left;">LangChain / LLM</td>
+<td style="text-align: left;">Fragmentação (<em>Chunking</em>) de discursos e sumarização de matérias.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>hash_discurso</code></td>
-<td style="text-align: left;">MD5</td>
-<td style="text-align: left;">Chave de idempotência para evitar duplicidade em operações de <code>UPSERT</code>.</td>
+<td style="text-align: left;"><strong>Vector DB</strong></td>
+<td style="text-align: left;">Supabase (<code>pgvector</code>)</td>
+<td style="text-align: left;">Armazenamento e busca vetorial por Distância de Cosseno.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>embedding</code></td>
-<td style="text-align: left;">VECTOR(768)</td>
-<td style="text-align: left;">Armazena o vetor gerado pelo SBERT para busca semântica.</td>
+<td style="text-align: left;"><strong>Orquestrador</strong></td>
+<td style="text-align: left;">LangChain</td>
+<td style="text-align: left;">Interligação do fluxo RAG e montagem de prompts de inferência.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>link_fonte</code></td>
-<td style="text-align: left;">URL</td>
-<td style="text-align: left;">Preserva o link original para garantir transparência e rastreabilidade.</td>
+<td style="text-align: left;"><strong>LLM</strong></td>
+<td style="text-align: left;">Llama 3 + LoRA</td>
+<td style="text-align: left;">Decisão de postura política e justificativa textual formatada.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Formato de Saída</strong></td>
+<td style="text-align: left;">JSON</td>
+<td style="text-align: left;">Contrato rigoroso para facilitação da integração do backend.</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="4-regras-de-negocio-e-transformacao-cleanerpy">4. Regras de Negócio e Transformação (<code>cleaner.py</code>)</h2>
-<p>Para que a Busca Semântica via SBERT funcione corretamente, o texto bruto passa por uma "lavanderia de dados" utilizando Expressões Regulares (Regex):</p>
-<ul>
-<li><strong>Limpeza Estrutural:</strong> Remoção total de tags residuais de HTML (ex: <code>&lt;p&gt;</code>, <code>&lt;br&gt;</code>).</li>
-<li><strong>Filtro de Taquigrafia:</strong> Descarte de reações do plenário, como <code>[Risos]</code>, <code>(Pausa)</code>.</li>
-<li><strong>Jargões e Protocolos:</strong> Exclusão de frases burocráticas não-semânticas (ex: <code>"Sr. Presidente, peço a palavra"</code>).</li>
-<li><strong>Filtro de Descarte:</strong> Discursos que resultarem em menos de 50 caracteres após a limpeza são descartados automaticamente por falta de densidade informativa.</li>
-</ul>
-<hr />
-<h2 id="5-rotina-de-execucao-e-carga">5. Rotina de Execução e Carga</h2>
-<p>Para garantir a eficiência, todas as inserções são tratadas como <code>UPSERT</code> baseadas no <code>hash_discurso</code>.</p>
-<h3 id="carga-historica-fatiada-backfilling">Carga Histórica Fatiada (Backfilling)</h3>
-<p>Para povoar o banco desde 2023 sem estourar a memória/CPU do Worker NLP, a carga inicial é executada de forma iterativa em blocos semestrais.</p>
-<h3 id="carga-delta-rotina-continua">Carga Delta (Rotina Contínua)</h3>
-<ul>
-<li><strong>Frequência:</strong> Semanal.</li>
-<li><strong>Janela de Execução:</strong> Toda sexta-feira, às 03:00 da manhã.</li>
-<li><strong>Justificativa:</strong> As atividades legislativas ocorrem primariamente de terça a quinta-feira. Executar na sexta garante que a base esteja atualizada para o pico de acessos do final de semana.</li>
-</ul>
 
 
 

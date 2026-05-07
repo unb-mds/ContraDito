@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="../frontend/">
+        <link rel="prev" href="../arquitetura/">
       
       
-        <link rel="next" href="../supabase/">
+        <link rel="next" href="../etl-dados/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Engenharia de Dados (ETL) - ContraDito</title>
+        <title>Frontend e Interface - ContraDito</title>
       
     
     
@@ -74,11 +74,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#o-mapa-do-etl-ingestao-e-processamento-de-dados" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -109,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Engenharia de Dados (ETL)
+              Frontend e Interface
             
           </span>
         </div>
@@ -840,9 +835,16 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../frontend/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -851,6 +853,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -860,29 +863,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Engenharia de Dados (ETL)
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../etl-dados/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -891,101 +874,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-ciclo-de-vida-do-dado-e-arquitetura" class="md-nav__link">
-    1. Ciclo de Vida do Dado e Arquitetura
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-fontes-primarias-e-endpoints-consumidos" class="md-nav__link">
-    2. Fontes Primárias e Endpoints Consumidos
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Fontes Primárias e Endpoints Consumidos">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#camara-dos-deputados-apiv2" class="md-nav__link">
-    Câmara dos Deputados (/api/v2)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#senado-federal" class="md-nav__link">
-    Senado Federal
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-estrutura-de-dados-no-supabase-provas_contradicao" class="md-nav__link">
-    3. Estrutura de Dados no Supabase (provas_contradicao)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-regras-de-negocio-e-transformacao-cleanerpy" class="md-nav__link">
-    4. Regras de Negócio e Transformação (cleaner.py)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-rotina-de-execucao-e-carga" class="md-nav__link">
-    5. Rotina de Execução e Carga
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Rotina de Execução e Carga">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#carga-historica-fatiada-backfilling" class="md-nav__link">
-    Carga Histórica Fatiada (Backfilling)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#carga-delta-rotina-continua" class="md-nav__link">
-    Carga Delta (Rotina Contínua)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1257,91 +1145,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-ciclo-de-vida-do-dado-e-arquitetura" class="md-nav__link">
-    1. Ciclo de Vida do Dado e Arquitetura
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-fontes-primarias-e-endpoints-consumidos" class="md-nav__link">
-    2. Fontes Primárias e Endpoints Consumidos
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Fontes Primárias e Endpoints Consumidos">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#camara-dos-deputados-apiv2" class="md-nav__link">
-    Câmara dos Deputados (/api/v2)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#senado-federal" class="md-nav__link">
-    Senado Federal
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-estrutura-de-dados-no-supabase-provas_contradicao" class="md-nav__link">
-    3. Estrutura de Dados no Supabase (provas_contradicao)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-regras-de-negocio-e-transformacao-cleanerpy" class="md-nav__link">
-    4. Regras de Negócio e Transformação (cleaner.py)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-rotina-de-execucao-e-carga" class="md-nav__link">
-    5. Rotina de Execução e Carga
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Rotina de Execução e Carga">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#carga-historica-fatiada-backfilling" class="md-nav__link">
-    Carga Histórica Fatiada (Backfilling)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#carga-delta-rotina-continua" class="md-nav__link">
-    Carga Delta (Rotina Contínua)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1356,100 +1159,9 @@
                   
 
 
-<h1 id="o-mapa-do-etl-ingestao-e-processamento-de-dados">🗺️ O Mapa do ETL: Ingestão e Processamento de Dados</h1>
-<p><strong>Responsável:</strong> João Guilherme (@jot4-ge)</p>
-<p>Este documento detalha a arquitetura do pipeline de Extração, Transformação e Carga (ETL) do <strong>ContraDito</strong>. O objetivo desta camada é garantir a ingestão robusta de discursos, proposições e votos, aplicando uma higienização extrema para blindar os motores de IA contra ruídos semânticos (princípio de <em>Garbage In, Garbage Out</em>).</p>
-<hr />
-<h2 id="1-ciclo-de-vida-do-dado-e-arquitetura">1. Ciclo de Vida do Dado e Arquitetura</h2>
-<p>O dado nasce bruto nos servidores do Governo Federal, passa por uma limpeza rigorosa num script assíncrono, é vetorizado pela IA e descansa no banco de dados para consumo imediato do Front-end.</p>
-<pre><code class="language-mermaid">graph TD
-    A[APIs Federais: Câmara e Senado] --&gt;|HTTP GET Assíncrono| B(Pipeline ETL: Extrator)
-    B --&gt;|JSON Bruto| C{cleaner.py: Higienização}
-    C --&gt;|Descarte de Lixo Sintático| D[Descarte / Log]
-    C --&gt;|Texto Limpo e Estruturado| E(Geração de Hash MD5)
-    E --&gt; F[Vetorização SBERT]
-    F --&gt;|INSERT / UPSERT| G[(Supabase: pgvector)]
-</code></pre>
-<hr />
-<h2 id="2-fontes-primarias-e-endpoints-consumidos">2. Fontes Primárias e Endpoints Consumidos</h2>
-<p>A arquitetura consome diretamente a infraestrutura de Dados Abertos do Governo, garantindo respaldo na Lei de Acesso à Informação (LAI).</p>
-<h3 id="camara-dos-deputados-apiv2">Câmara dos Deputados (<code>/api/v2</code>)</h3>
-<p><strong>Perfis e Discursos:</strong></p>
-<ul>
-<li><code>GET /deputados/{id}/discursos</code> — Captura transcrição, <code>urlVideo</code> e <code>urlTexto</code>.</li>
-</ul>
-<p><strong>Ideias e Ações (PECs, PLs e Votos):</strong></p>
-<ul>
-<li><code>GET /proposicoes?siglaTipo=PEC,PL&amp;ano=2023</code> — Captura a Ementa e o PDF de inteiro teor.</li>
-<li><code>GET /votacoes/{id_votacao}/votos</code> — Retorna a lista nominal: "Deputado X votou Sim/Não".</li>
-</ul>
-<h3 id="senado-federal">Senado Federal</h3>
-<blockquote>
-<p><strong>Nota de Implementação:</strong> Para evitar colisão de Chaves Primárias no banco, aplica-se um offset de <code>+1.000.000</code> nos IDs dos Senadores.</p>
-</blockquote>
-<ul>
-<li><code>GET /materia/pesquisa?sigla=PEC,PL</code></li>
-<li><code>GET /votacao/materia/{codigo_da_materia}</code> — Captura a votação nominal dos senadores.</li>
-</ul>
-<hr />
-<h2 id="3-estrutura-de-dados-no-supabase-provas_contradicao">3. Estrutura de Dados no Supabase (<code>provas_contradicao</code>)</h2>
-<p>A tabela central de inteligência do sistema é a <code>provas_contradicao</code>. Abaixo, detalhamos os campos críticos que sustentam o RAG:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Campo</th>
-<th style="text-align: left;">Tipo</th>
-<th style="text-align: left;">Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><code>politico_id</code></td>
-<td style="text-align: left;">FK</td>
-<td style="text-align: left;">ID do parlamentar (com offset de +1M para Senadores).</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>texto_extraido</code></td>
-<td style="text-align: left;">TEXT</td>
-<td style="text-align: left;">O texto 100% higienizado pelo <code>cleaner.py</code>, pronto para vetorização.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>hash_discurso</code></td>
-<td style="text-align: left;">MD5</td>
-<td style="text-align: left;">Chave de idempotência para evitar duplicidade em operações de <code>UPSERT</code>.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>embedding</code></td>
-<td style="text-align: left;">VECTOR(768)</td>
-<td style="text-align: left;">Armazena o vetor gerado pelo SBERT para busca semântica.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>link_fonte</code></td>
-<td style="text-align: left;">URL</td>
-<td style="text-align: left;">Preserva o link original para garantir transparência e rastreabilidade.</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="4-regras-de-negocio-e-transformacao-cleanerpy">4. Regras de Negócio e Transformação (<code>cleaner.py</code>)</h2>
-<p>Para que a Busca Semântica via SBERT funcione corretamente, o texto bruto passa por uma "lavanderia de dados" utilizando Expressões Regulares (Regex):</p>
-<ul>
-<li><strong>Limpeza Estrutural:</strong> Remoção total de tags residuais de HTML (ex: <code>&lt;p&gt;</code>, <code>&lt;br&gt;</code>).</li>
-<li><strong>Filtro de Taquigrafia:</strong> Descarte de reações do plenário, como <code>[Risos]</code>, <code>(Pausa)</code>.</li>
-<li><strong>Jargões e Protocolos:</strong> Exclusão de frases burocráticas não-semânticas (ex: <code>"Sr. Presidente, peço a palavra"</code>).</li>
-<li><strong>Filtro de Descarte:</strong> Discursos que resultarem em menos de 50 caracteres após a limpeza são descartados automaticamente por falta de densidade informativa.</li>
-</ul>
-<hr />
-<h2 id="5-rotina-de-execucao-e-carga">5. Rotina de Execução e Carga</h2>
-<p>Para garantir a eficiência, todas as inserções são tratadas como <code>UPSERT</code> baseadas no <code>hash_discurso</code>.</p>
-<h3 id="carga-historica-fatiada-backfilling">Carga Histórica Fatiada (Backfilling)</h3>
-<p>Para povoar o banco desde 2023 sem estourar a memória/CPU do Worker NLP, a carga inicial é executada de forma iterativa em blocos semestrais.</p>
-<h3 id="carga-delta-rotina-continua">Carga Delta (Rotina Contínua)</h3>
-<ul>
-<li><strong>Frequência:</strong> Semanal.</li>
-<li><strong>Janela de Execução:</strong> Toda sexta-feira, às 03:00 da manhã.</li>
-<li><strong>Justificativa:</strong> As atividades legislativas ocorrem primariamente de terça a quinta-feira. Executar na sexta garante que a base esteja atualizada para o pico de acessos do final de semana.</li>
-</ul>
+  <h1>Frontend e Interface</h1>
+
+
 
 
 
