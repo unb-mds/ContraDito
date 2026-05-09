@@ -3,5 +3,17 @@
   --md-primary-fg-color: #0b1c37; 
   
   /* Altera a cor dos links e botões quando você passa o mouse */
-  --md-accent-fg-color: #1D4ED8; 
+  --md-accent-fg-color: #1D4ED8;
+  --md-typeset-a-color: #1D4ED8; /*Forca os links no meio do texto a ficarem com cor diferetne*/
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #0b1c37; /* Um azul claro legível */
+  --md-accent-fg-color: #64b5f6;  /* Cor de destaque (links) */
+  --md-typeset-a-color: #64b5f6; /*força os links no meio do texto a ficarem claros*/
+}
+
+[data-md-color-scheme="slate"] .md-nav__link--active,
+[data-md-color-scheme="slate"] .md-nav__link--active:hover {
+  color: #64b5f6 !important;
 }
