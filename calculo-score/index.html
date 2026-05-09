@@ -62,12 +62,16 @@
   
     
     
+      
+    
     
     
     
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -116,6 +120,30 @@
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Mudar para modo escuro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo escuro" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Mudar para modo claro"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Mudar para modo claro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+</form>
       
     
     
@@ -182,7 +210,7 @@
         <a href=".." class="md-tabs__link">
           
   
-  🏠 O Projeto
+  O Projeto
 
         </a>
       </li>
@@ -202,7 +230,7 @@
         <a href="../manual/" class="md-tabs__link">
           
   
-  💡 O Produto
+  O Produto
 
         </a>
       </li>
@@ -220,7 +248,7 @@
         <a href="../requisitos/" class="md-tabs__link">
           
   
-  📋 Requisitos e Gestão
+  Requisitos e Gestão
 
         </a>
       </li>
@@ -238,7 +266,7 @@
         <a href="../arquitetura/" class="md-tabs__link">
           
   
-  🏗️ Arquitetura e Engenharia
+  Arquitetura e Engenharia
 
         </a>
       </li>
@@ -256,7 +284,7 @@
         <a href="../execucao/" class="md-tabs__link">
           
   
-  💻 Desenvolvimento
+  Desenvolvimento
 
         </a>
       </li>
@@ -274,7 +302,7 @@
         <a href="../avaliacao/" class="md-tabs__link">
           
   
-  🏁 Encerramento
+  Encerramento
 
         </a>
       </li>
@@ -335,7 +363,7 @@
             
   
   <span class="md-ellipsis">
-    🏠 O Projeto
+    O Projeto
   </span>
   
 
@@ -345,7 +373,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
-            🏠 O Projeto
+            O Projeto
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -418,7 +446,7 @@
             
   
   <span class="md-ellipsis">
-    💡 O Produto
+    O Produto
   </span>
   
 
@@ -428,7 +456,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            💡 O Produto
+            O Produto
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -614,7 +642,7 @@
             
   
   <span class="md-ellipsis">
-    📋 Requisitos e Gestão
+    Requisitos e Gestão
   </span>
   
 
@@ -624,7 +652,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            📋 Requisitos e Gestão
+            Requisitos e Gestão
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -897,7 +925,7 @@
             
   
   <span class="md-ellipsis">
-    🏗️ Arquitetura e Engenharia
+    Arquitetura e Engenharia
   </span>
   
 
@@ -907,7 +935,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            🏗️ Arquitetura e Engenharia
+            Arquitetura e Engenharia
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1038,7 +1066,7 @@
             
   
   <span class="md-ellipsis">
-    💻 Desenvolvimento
+    Desenvolvimento
   </span>
   
 
@@ -1048,7 +1076,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            💻 Desenvolvimento
+            Desenvolvimento
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1139,7 +1167,7 @@
             
   
   <span class="md-ellipsis">
-    🏁 Encerramento
+    Encerramento
   </span>
   
 
@@ -1149,7 +1177,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            🏁 Encerramento
+            Encerramento
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1327,11 +1355,15 @@ Este processo transforma o significado e a intenção da fala em coordenadas mat
 <h3 id="2-mapeamento-de-votos-oficiais-o-feito">2. Mapeamento de Votos Oficiais (O "Feito")</h3>
 <p>Em paralelo, o nosso banco de dados mapeia os votos oficiais (Sim, Não ou Abstenção) em Projetos de Lei (PLs). A ementa de cada projeto também é convertida num vetor matemático através do mesmo modelo de embeddings, garantindo que "Dito" e "Feito" falem a mesma linguagem matemática.</p>
 <h3 id="3-o-cruzamento-matematico-o-match">3. O Cruzamento Matemático (O <em>Match</em>)</h3>
-<p>O motor do ContraDito utiliza a extensão <strong><code>pgvector</code></strong> no Supabase para calcular a <strong>Similaridade de Cosseno</strong> entre os vetores. 
-* Se a similaridade é alta, significa que o discurso e a lei tratam do mesmo assunto semântico.
-* O sistema recupera esse "par ideal" e aciona o <strong>Llama 3</strong> para confirmar a consistência:
-    * <strong>Coerência Positiva:</strong> O discurso defende a pauta e o voto foi favorável (ou vice-versa).
-    * <strong>Contradição (Incoerência):</strong> O discurso aponta para um lado, mas o voto registado foi na direção oposta.</p>
+<p>O motor do ContraDito utiliza a extensão <strong><code>pgvector</code></strong> no Supabase para calcular a <strong>Similaridade de Cosseno</strong> entre os vetores. </p>
+<ul>
+<li>Se a similaridade é alta, significa que o discurso e a lei tratam do mesmo assunto semântico.</li>
+<li>O sistema recupera esse "par ideal" e aciona o <strong>Llama 3</strong> para confirmar a consistência:<ul>
+<li><strong>Coerência Positiva:</strong> O discurso defende a pauta e o voto foi favorável (ou vice-versa).</li>
+<li><strong>Contradição (Incoerência):</strong> O discurso aponta para um lado, mas o voto registado foi na direção oposta.</li>
+</ul>
+</li>
+</ul>
 <h3 id="4-a-formula-matematica-do-score">4. A Fórmula Matemática do Score</h3>
 <p>O <em>Score de Coerência</em> é uma nota de <strong>[0 a 100]</strong>, calculada com base no percentual de consistência nos cruzamentos validados pela busca vetorial.</p>
 <p><em>Fórmula simplificada:</em>
@@ -1342,9 +1374,11 @@ Este processo transforma o significado e a intenção da fala em coordenadas mat
 </blockquote>
 <hr />
 <h2 id="limitacoes-e-mitigacoes">Limitações e Mitigações</h2>
-<p>Para garantir justiça e evitar punições por mudanças naturais de contexto:
-* <strong>Fator Temporal:</strong> Priorizamos cruzamentos entre discursos e votos próximos no tempo ou dentro da mesma legislatura.
-* <strong>Contexto Político:</strong> O motor LLM analisa se votos em "Destaques" ou manobras regimentais justificam uma aparente mudança de posicionamento, garantindo que a nota reflita a intenção real.</p>
+<p>Para garantir justiça e evitar punições por mudanças naturais de contexto:</p>
+<ul>
+<li><strong>Fator Temporal:</strong> Priorizamos cruzamentos entre discursos e votos próximos no tempo ou dentro da mesma legislatura.</li>
+<li><strong>Contexto Político:</strong> O motor LLM analisa se votos em "Destaques" ou manobras regimentais justificam uma aparente mudança de posicionamento, garantindo que a nota reflita a intenção real.</li>
+</ul>
 <hr />
 <h2 id="os-bastidores-do-passo-1-o-script-de-extracao-seeder">Os Bastidores do Passo 1: O Script de Extração (Seeder)</h2>
 <p>Para garantir que o processamento vetorial não seja prejudicado por ruídos protocolares (como "Obrigado, Sr. Presidente"), aplicamos regras de negócio diretamente no código de extração:</p>
@@ -1353,19 +1387,19 @@ Este processo transforma o significado e a intenção da fala em coordenadas mat
 <li><strong>Preparação de Dados:</strong> O objeto do político é inicializado e as tabelas de provas são preparadas para receber os novos cruzamentos.</li>
 <li><strong>Idempotência (Upsert):</strong> Utilizamos a função <code>.upsert()</code> para garantir que atualizações de discursos não gerem duplicidade de registros.</li>
 </ol>
-<p><strong>Trecho de destaque (Filtro de Ruído em Python):</strong>
-```python
-def buscar_ultimo_discurso_relevante(id_camara):
-    # ... (conexão com API) ...
-    for discurso in dados:
-        texto = discurso.get("transcricao", "")
-        data_hora = discurso.get("dataHoraInicio", "2023-01-01T00:00").split("T")[0]</p>
-<pre><code>    # Regra de Negócio: Ignora discursos curtos/protocolares
-    if len(texto) &gt; 150:
-        return texto, data_hora
+<p><strong>Trecho de destaque (Filtro de Ruído em Python):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">buscar_ultimo_discurso_relevante</span><span class="p">(</span><span class="n">id_camara</span><span class="p">):</span>
+    <span class="c1"># ... (conexão com API) ...</span>
+    <span class="k">for</span> <span class="n">discurso</span> <span class="ow">in</span> <span class="n">dados</span><span class="p">:</span>
+        <span class="n">texto</span> <span class="o">=</span> <span class="n">discurso</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;transcricao&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">data_hora</span> <span class="o">=</span> <span class="n">discurso</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;dataHoraInicio&quot;</span><span class="p">,</span> <span class="s2">&quot;2023-01-01T00:00&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-return "Nenhum discurso relevante encontrado.", "2023-01-01"
-</code></pre>
+        <span class="c1"># Regra de Negócio: Ignora discursos curtos/protocolares</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">150</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">texto</span><span class="p">,</span> <span class="n">data_hora</span>
+
+    <span class="k">return</span> <span class="s2">&quot;Nenhum discurso relevante encontrado.&quot;</span><span class="p">,</span> <span class="s2">&quot;2023-01-01&quot;</span>
+</code></pre></div>
 
 
 
@@ -1413,6 +1447,10 @@ return "Nenhum discurso relevante encontrado.", "2023-01-01"
     
     
       <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
