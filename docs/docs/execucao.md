@@ -56,6 +56,7 @@ docker compose up --build
 **E pronto!** O Docker fará o download das dependências (aproveitando a técnica de *Layer Caching* para otimização de velocidade) e levantará o sistema. 
 
 Você poderá acessar:
+
 * **Interface do Usuário:** `http://localhost:3000`
 * **Documentação da API (Swagger):** `http://localhost:8000/docs`
 

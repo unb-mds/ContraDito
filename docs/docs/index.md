@@ -2,13 +2,13 @@
 
 ## Sobre
 
-# 🏠 Bem-vindo ao ContraDito
+#  Bem-vindo ao ContraDito
 
 **ContraDito** é uma plataforma de inteligência de dados e fiscalização social focada no cenário político brasileiro. Desenvolvido como projeto da disciplina de Métodos de Desenvolvimento de Software (MDS), o sistema utiliza Inteligência Artificial para cruzar o que os parlamentares falam com o que eles efetivamente votam.
 
 ---
 
-## 🌍 Contextualização
+##  Contextualização
 
 No Brasil, a transparência pública avançou significativamente com a Lei de Acesso à Informação (LAI) e os portais de Dados Abertos do Governo Federal. Hoje, qualquer cidadão tem acesso a milhares de transcrições de discursos, projetos de lei (PLs, PECs) e registros de votações nominais. 
 
@@ -16,7 +16,7 @@ No entanto, o volume desses dados é massivo. Compreender se um político manté
 
 ---
 
-## 🎯 Motivação
+##  Motivação
 
 O projeto nasce da necessidade de combater a desinformação e a polarização através de dados concretos. Frequentemente, observa-se no cenário político o fenômeno do discurso duplo: um parlamentar pode proferir discursos inflamados a favor de um tema (para gerar engajamento nas redes sociais), mas votar de forma oposta ou abster-se quando o projeto vai a plenário.
 
@@ -24,7 +24,7 @@ A nossa motivação é **reduzir a assimetria de informação** entre o represen
 
 ---
 
-## 🚀 Objetivos do Projeto
+##  Objetivos do Projeto
 
 O objetivo central do ContraDito é fornecer uma ferramenta de auditoria cidadã acessível. Para alcançar isso, definimos os seguintes objetivos específicos:
 

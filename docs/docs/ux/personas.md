@@ -5,6 +5,7 @@ Para garantir que o **ContraDito** resolva um problema real e entregue valor des
 ##  A nossa Persona: O Jornalista Investigativo
 
 O sistema foi desenhado especificamente para as necessidades de um **Jornalista Investigativo** ou analista político.
+
 * **O Problema:** Perda de tempo ao analisar horas de vídeos de sessões plenárias e ao cruzar dados de centenas de páginas do Diário Oficial.
 * **A Necessidade:** Uma ferramenta rápida, com interface limpa, que faça o cruzamento automático do que foi dito vs. o que foi votado.
 

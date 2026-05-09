@@ -4,24 +4,36 @@ site_description: Documentação do projeto da disciplina de MDS
 theme:
   name: material
   palette:
-    primary: custom # Cor da barra superior 
-    accent: custom  # Cor dos botões e links
+    - scheme: default
+      primary: custom # Cor da barra superior 
+      accent: custom  # Cor dos botões e links
+      toggle:
+        icon: material/weather-night
+        name: Mudar para modo escuro
+
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Mudar para modo claro
+
   features:
-    - navigation.tabs # Isso aqui transforma o menu lateral em abas superiores!
+    - navigation.tabs # Isso aqui transforma o menu lateral em abas superiores
     - navigation.top  # Adiciona um botão de "voltar ao topo"
 
 nav:
 
-  - 🏠 O Projeto:
+  -  O Projeto:
       - Sobre o ContraDito: index.md
       - Escopo e Visão Geral: escopo.md
 
-  - 💡 O Produto:
+  -  O Produto:
       - Manual do Usuário: manual.md
       - Entendendo o Score de Coerência: calculo-score.md
       - Transparência, LGPD e Dados: lgpd.md
 
-  - 📋 Requisitos e Gestão:
+  -  Requisitos e Gestão:
       - Backlog e Requisitos: requisitos.md
       - Story Map e Personas: ux/personas.md
       - Protótipos e Figma: ux/prototipos.md
@@ -33,23 +45,36 @@ nav:
           - Sprint 4: sprints/sprint-4.md
           - Sprint 5: sprints/sprint-5.md
           - Sprint 6: sprints/sprint-6.md
- 
-  - 🏗️ Arquitetura e Engenharia:
+
+  -  Arquitetura e Engenharia:
       - Visão Geral da Arquitetura: arquitetura.md
       - Frontend e Interface: frontend.md
       - Engenharia de Dados (ETL): etl-dados.md
       - Banco de Dados (Supabase): supabase.md
       - Motor NLP e RAG: motor-nlp.md
 
-  - 💻 Desenvolvimento:
+  -  Desenvolvimento:
       - Como Executar o Projeto: execucao.md
       - Integração e API: api.md
       - Decisões Arquiteturais (ADRs): adrs/index.md
 
-  - 🏁 Encerramento:
+  -  Encerramento:
       - Avaliação Final: avaliacao.md
       - Próximos Passos (Roadmap): roadmap.md
       - Links Úteis: links.md
 
 extra_css:
   - stylesheets/extra.css
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

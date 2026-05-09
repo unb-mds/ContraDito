@@ -1,12 +1,11 @@
 # Especificação Técnica: Motor NLP e Pipeline RAG
 
-**Responsável:** Luiz Moreira (@luizhtmoreira)
-
-O motor NLP do projeto **contraDito** opera sob o padrão arquitetural **Pipe and Filter**, onde o processamento de dados é decomposto em etapas independentes e modulares. O objetivo central é transformar textos brutos (discursos e ementas) em vereditos estruturados de coerência política, utilizando uma arquitetura de *Retrieval-Augmented Generation* (RAG).
-
 ---
 
 ## 1. Visão Geral do Fluxo (Pipeline Pipe and Filter)
+
+O motor NLP do projeto **contraDito** opera sob o padrão arquitetural **Pipe and Filter**, onde o processamento de dados é decomposto em etapas independentes e modulares. O objetivo central é transformar textos brutos (discursos e ementas) em vereditos estruturados de coerência política, utilizando uma arquitetura de Retrieval-Augmented Generation (RAG).
+
 
 O fluxo segue a seguinte sequência lógica:
 
@@ -26,12 +25,14 @@ Modelos de linguagem baseados na arquitetura Transformer possuem um limite estri
 
 ### 2.1. Discursos Parlamentares (Fragmentação Local / Chunking)
 Para evitar o truncamento silencioso (onde a IA ignora o final do discurso), o sistema implementa a técnica de *Chunking*:
+
 * **Divisão de Texto:** Discursos completos são fatiados em múltiplos fragmentos utilizando o `RecursiveCharacterTextSplitter` do LangChain.
 * **Sobreposição (Overlap):** Cada fragmento preserva uma percentagem de caracteres do trecho anterior. Isso garante que frases que fazem a transição entre ideias não percam o contexto legislativo.
 * **Impacto Estrutural:** A relação de persistência evolui de `1 Discurso : 1 Vetor` para `1 Discurso : N Fragmentos Vetorizados`. Na etapa de RAG, o LLM recebe apenas o trecho exato onde a matéria foi debatida, otimizando o consumo de tokens.
 
 ### 2.2. Matérias Legislativas (Representação Holística)
 Diferente dos discursos, os parlamentares votam no mérito do projeto como um todo (PL/PEC). Fragmentar um Projeto de Lei de 50 páginas e buscar semelhança apenas no primeiro fragmento destruiria a semântica da busca.
+
 * **Âncora Semântica (Ementa):** O sistema prioriza a vetorização da **Ementa** (resumo oficial). Ela é densa, curta, raramente excede os limites de tokens e contém a intenção central da votação.
 * **Resumo Global (Fallback):** Caso a ementa seja vaga ou insuficiente, o pipeline utiliza um LLM para gerar um Resumo Executivo Global da matéria antes da vetorização.
 * **Impacto Estrutural:** Garante que o "todo" da matéria legislativa seja comparado aos fragmentos (*chunks*) dos discursos, preservando o espírito da lei num único espaço semântico de alta qualidade.
@@ -43,6 +44,7 @@ Diferente dos discursos, os parlamentares votam no mérito do projeto como um to
 Para que o sistema compreenda a semântica política brasileira, foi selecionado o modelo **`paraphrase-multilingual-mpnet-base-v2`** (via SBERT).
 
 **Porquê este modelo?**
+
 * **Acurácia Multilíngue:** Treinado especificamente para lidar com múltiplos idiomas, incluindo o Português Brasileiro, capturando nuances e gírias do ambiente legislativo.
 * **Arquitetura MPNet:** Combina os benefícios de *Masked Language Modeling* (MLM) e *Permuted Language Modeling* (PLM), resultando em embeddings de 768 dimensões com extrema riqueza semântica.
 * **Foco em Paráfrases:** Otimizado para identificar quando dois textos dizem a mesma coisa com palavras diferentes, essencial para correlacionar o linguajar formal e jurídico de uma PEC com o discurso retórico e inflamado de um parlamentar.
@@ -73,6 +75,7 @@ $$Distância = 1 - Similaridade$$
 A decisão final sobre a postura do parlamentar é tomada pelo modelo **Llama 3**. Para garantir que o modelo atue como um analista político preciso, aplica-se a técnica de **LoRA (Low-Rank Adaptation)**.
 
 O LoRA permite injetar conhecimento do domínio legislativo brasileiro no Llama 3, treinando apenas uma pequena fração dos parâmetros (matrizes de adaptação). Os benefícios incluem:
+
 * **Especialização:** Adequação ao formato de textos de PLs, PECs e discursos oficiais.
 * **Estruturação de Saída:** Garantia de que a resposta seja gerada obrigatoriamente em formato JSON estruturado, evitando falhas de *parsing* na API principal.
 * **Economia Computacional:** Redução drástica na memória de GPU necessária.
@@ -82,6 +85,7 @@ O LoRA permite injetar conhecimento do domínio legislativo brasileiro no Llama 
 ## 6. Orquestração via LangChain
 
 O **LangChain** atua como o framework orquestrador do pipeline, responsável por:
+
 * **Gerenciamento de Prompts:** Injetar dinamicamente a Ementa da votação e os fragmentos de discursos recuperados (*top-k chunks*).
 * **Cadeias de Processamento (Chains):** Executar a sequência lógica rígida: *Recuperar -> Formatar -> Analisar -> Justificar*.
 * **Controle de Limites:** Filtrar os fragmentos recuperados para garantir que o *prompt* montado não exceda o limite de contexto (*Context Window*) do Llama 3.
