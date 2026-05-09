@@ -1747,9 +1747,15 @@ Este processo transforma o significado e a intenção da fala em coordenadas mat
 </blockquote>
 <hr />
 <h2 id="limitacoes-e-mitigacoes">Limitações e Mitigações</h2>
-<p>Para garantir que o Score de Coerência seja aplicado de forma justa e tecnicamente viável, o sistema adota os seguintes parâmetros:
-* <strong>Mitigação - Recorte Temporal (Legislatura Vigente):</strong> Para mitigar os efeitos de mudanças naturais de posicionamento que ocorrem ao longo de carreiras políticas extensas, o sistema limita a coleta e análise de dados ao período do mandato atual (últimos 4 anos). Essa estratégia garante que o parlamentar seja avaliado com base em sua atuação e discursos recentes, evitando que opiniões de legislaturas passadas distorçam a percepção de sua coerência no contexto político presente.
-* <strong>Limitação - Premissa de Validade e Complexidade Regimental:</strong> O sistema opera sob a premissa de que todos os discursos proferidos dentro do intervalo de 4 anos são fontes válidas e representativas da postura do parlamentar. Uma limitação do projeto é a não consideração de nuances do contexto político-regimental complexo, como manobras de obstrução ou votos em "Destaques", que podem forçar um posicionamento nominal divergente da retórica por questões puramente técnicas. O motor NLP foca estritamente na relação semântica entre o discurso público e o voto registrado, sem interpretar justificativas de manobras de bastidor.</p>
+<p>Para garantir que o Score de Coerência seja aplicado de forma justa e tecnicamente viável, o sistema adota os seguintes parâmetros:</p>
+<ul>
+<li>
+<p><strong>Mitigação - Recorte Temporal (Legislatura Vigente):</strong> Para mitigar os efeitos de mudanças naturais de posicionamento que ocorrem ao longo de carreiras políticas extensas, o sistema limita a coleta e análise de dados ao período do mandato atual (últimos 4 anos). Essa estratégia garante que o parlamentar seja avaliado com base em sua atuação e discursos recentes, evitando que opiniões de legislaturas passadas distorçam a percepção de sua coerência no contexto político presente.</p>
+</li>
+<li>
+<p><strong>Limitação - Premissa de Validade e Complexidade Regimental:</strong> O sistema opera sob a premissa de que todos os discursos proferidos dentro do intervalo de 4 anos são fontes válidas e representativas da postura do parlamentar. Uma limitação do projeto é a não consideração de nuances do contexto político-regimental complexo, como manobras de obstrução ou votos em "Destaques", que podem forçar um posicionamento nominal divergente da retórica por questões puramente técnicas. O motor NLP foca estritamente na relação semântica entre o discurso público e o voto registrado, sem interpretar justificativas de manobras de bastidor.</p>
+</li>
+</ul>
 <hr />
 <h2 id="os-bastidores-do-passo-1-o-script-de-extracao-seeder">Os Bastidores do Passo 1: O Script de Extração (Seeder)</h2>
 <p>Para garantir que o processamento vetorial não seja prejudicado por ruídos protocolares (como "Obrigado, Sr. Presidente"), aplicamos regras de negócio diretamente no código de extração:</p>
