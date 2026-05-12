@@ -28,5 +28,5 @@ Mapeamos a jornada do nosso usuário no Figma para definir claramente o que entr
 * **MVP (Prioridade Alta):** Tela "Ringue" para comparar dois políticos, contrastando seus scores e contradições lado a lado.
 * **Melhorias Futuras:** Filtros de comparação avançados por temas específicos (ex: economia, meio ambiente).
 
-> **Nota visual:** O Srorymap do ContraDito original construído pela equipe no Figma está detalhado abaixo.
-![Card Storymap do ContraDito](../imagens/Storymap.jpg)
+> **Nota visual:** O User Storymap do ContraDito construído pela equipe no Figma está no link abaixo.
+[Acessar Storymap no Figma](https://www.figma.com/board/J6igyv5zX16YPhLaoKM3c4/ContraDito?node-id=0-1&t=Jq1ENqM8V4La6slk-0)

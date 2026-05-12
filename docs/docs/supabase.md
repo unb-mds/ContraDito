@@ -1,48 +1,52 @@
 # Banco de Dados e Busca Vetorial (Supabase)
 
-Este documento apresenta a arquitetura de dados que sustenta o Supabase do **ContraDito**. O foco aqui não é o mapeamento estrito de colunas ou tipagens de código, mas sim documentar como o banco de dados atua como um filtro ativo no pipeline RAG (*Retrieval-Augmented Generation*).
-
----
-
 ## 1. Modelo Conceitual de Dados
-
 O banco de dados foi projetado para unir dados relacionais tradicionais com coordenadas espaciais (vetores), dividindo-se em dois domínios principais:
 
-### A. Perfil e Agregação (`politicos`)
-Armazena o cadastro governamental oficial e o estado consolidado do parlamentar.
+### 1.1. Perfil e Agregação (`politicos`)
 
-> **Regra de Negócio Central:** O sistema prevê nativamente a ausência de dados. O score de coerência não possui um valor padrão arbitrário (como `0`). Se um parlamentar não tiver histórico de discursos ou votações processadas, a nota agregada será nula (`null`). Isto permite que o Front-end reaja corretamente ao estado de "Sem Dados", evitando acusar falsamente um político de incoerência por mera falta de histórico.
+Armazena o cadastro governamental oficial - dados extraídos das APIs: `id`, `nome_civil`, `nome_urna`, `cargo`, `partido`, `UF`, `foto_url` e `situacao`, além do `score_coerencia` após o seu cálculo. Adicionalmente, esta tabela atua como entidade principal no banco de dados, fornecendo a chave estrangeira para a tabela `provas_contradicao`.
 
-### B. O Núcleo do RAG (`provas_contradicao`)
-É o repositório central onde a inteligência semântica opera. Esta estrutura amarra as três pontas do processo de checagem de coerência:
-1. **A Evidência Bruta:** O texto literal extraído do discurso (higienizado pelo fluxo de ETL) e a sua respetiva representação em formato de vetor de 768 dimensões.
-2. **O Alvo:** A ementa ou assunto do Projeto de Lei/PEC que está sob escrutínio.
-3. **O Veredito:** A inferência gerada assincronamente pelo Motor NLP (Llama 3), que preenche as lacunas de postura (ex: "A Favor" / "Contra"), a justificativa do modelo e o status final de coerência derivado do confronto direto com o painel oficial de votação.
+O `score_coerencia` deve ser nulo (`null`) caso não haja histórico processado do parlamentar. Isso é essencial para que o Front-end exiba o estado **"Sem Dados"**, em vez de assumir o valor `0` e acusar falsamente o político de incoerência.
+
+### 1.2. O Núcleo do RAG (`provas_contradicao`)
+
+É o repositório central onde a inteligência semântica opera. Esta estrutura conecta as informações essenciais do processo de checagem de coerência:
+
+- **Conteúdo Processado e Rastreabilidade:** Armazena o texto literal do discurso (higienizado pelo fluxo de ETL), acompanhado do seu respectivo `embedding` (vetor utilizado para busca semântica). Cada registro possui um `hash` único para evitar duplicação no banco e mantém metadados de origem, como `tipo_documento`, `data_evento` e `link_fonte`.
+
+- **Contexto Legislativo e Voto Oficial:** Mantém a ementa ou assunto da proposição analisada e registra diretamente o `voto_oficial`, permitindo o cruzamento entre discurso público e posicionamento formal em votações.
+
+- **Inferência do Motor NLP e Veredito:** Armazena a análise gerada de forma assíncrona pelo modelo de IA (Llama 3), responsável por identificar a `postura_extraida` (ex.: `"A Favor"` ou `"Contra"`) e produzir a justificativa textual da inferência. A partir disso, o sistema consolida o `status_coerencia`, um valor booleano derivado da comparação entre `voto_oficial` e `postura_extraida`.
 
 ---
 
 ## 2. O Motor Semântico: `pgvector` e HNSW
 
-O Supabase no ContraDito não opera apenas como um repositório passivo de textos, mas como um **motor de cálculo matemático acelerado**.
+O banco de dados (Supabase/PostgreSQL) do projeto não atua apenas como um repositório passivo de textos, mas também como um mecanismo ativo de busca semântica.
 
-* **O Espaço Vetorial (`pgvector`):** Cada discurso processado pelo *Worker* é convertido num vetor matemático. O banco de dados consegue mapear a "assinatura semântica" do texto, agrupando ideias similares (ex: "corte de gastos" e "redução de despesas") independentemente do vocabulário exato utilizado.
-* **Índice HNSW (*Hierarchical Navigable Small World*):** Avaliar a similaridade de um texto contra toda a base de dados utilizando busca sequencial (*Full Table Scan*) causaria exaustão de recursos. Para garantir a escalabilidade do sistema, o índice HNSW cria um grafo em camadas que permite à *query* de busca "pular" vetores matematicamente distantes, garantindo cruzamentos semânticos em milissegundos.
+- **Espaço Vetorial (`pgvector`):** Cada discurso processado é convertido em um vetor matemático de 768 dimensões, denominado `embedding`. Esses vetores são armazenados no banco de dados e comparados por meio da métrica de **Similaridade por Cosseno**, utilizada para medir a proximidade semântica entre conteúdos. Essa abordagem permite ao sistema compreender relações de significado entre expressões diferentes — como “corte de gastos” e “redução de despesas” — sem depender de correspondência literal de palavras.
+
+- **Busca Vetorial Otimizada (Índice HNSW):** Comparar um vetor com todos os registros da base tornaria a consulta inviável em escala. Para solucionar esse problema, o sistema utiliza o índice **HNSW** (*Hierarchical Navigable Small World*), responsável por organizar os vetores em uma estrutura hierárquica de vizinhança. Dessa forma, o mecanismo de busca consegue ignorar rapidamente regiões semanticamente irrelevantes e direcionar a consulta apenas aos grupos mais próximos do contexto pesquisado. Isso garante buscas semânticas de alta performance e baixa latência, mesmo com o crescimento contínuo da base de dados.
 
 ---
 
 ## 3. A Busca Ativa: Função RPC
 
-A extração de contexto não ocorre na API principal, mas sim dentro do banco de dados através de uma *Stored Procedure* (RPC) chamada `buscar_discursos_similares`. Isto protege o back-end de gargalos de rede e de processamento.
+A extração de contexto utilizada pela inteligência artificial ocorre diretamente no banco de dados por meio de uma *Stored Procedure* (RPC). Executar a busca vetorial próximo aos dados reduz latência, elimina gargalos de rede e garante respostas em escala de milissegundos. A estrutura da função é baseada em quatro pilares principais:
 
-* **Distância de Cosseno (`<=>`):** A função SQL utiliza este operador vetorial para medir o ângulo entre o vetor da busca (ementa da Lei) e os vetores dos discursos do parlamentar alvo. Distâncias menores indicam alta similaridade semântica.
-* **Escudo Anti-Alucinação (*Match Threshold*):** A função recebe um parâmetro de corte de precisão rigoroso. Caso o parlamentar alvo nunca se tenha pronunciado sobre o tema pesquisado, as distâncias matemáticas serão altas. A RPC bloqueia esses resultados e retorna vazio. **Este comportamento impede que o LLM receba "ruído" ou textos fora de escopo, mitigando drasticamente o risco de alucinações.**
+- **Filtro de Escopo (`p_politico_id`):** Antes da execução do cálculo vetorial, a função restringe os registros ao parlamentar alvo, garantindo isolamento contextual e impedindo que discursos de políticos diferentes sejam misturados na análise.
 
----
+- **Cálculo de Similaridade:** O banco utiliza o operador de **Distância do Cosseno** (`<=>`) para medir proximidade entre embeddings. Como distâncias menores representam maior similaridade semântica, a função aplica a transformação `1 - distância`, produzindo um `score_similaridade` mais intuitivo, no qual valores maiores indicam maior proximidade de significado.
 
-## 4. Contratos de API (FastAPI)
+- **Escudo Anti-Alucinação (`match_threshold`):** A similaridade calculada deve obrigatoriamente superar o limite definido em `match_threshold`. Caso o parlamentar não possua discursos semanticamente relacionados ao tema pesquisado, os registros são descartados e a função retorna vazio. Esse mecanismo reduz ruído contextual e mitiga significativamente o risco de inferências imprecisas pelo modelo LLM (Llama 3).
 
-Para evitar a obsolescência da documentação e garantir que a fonte da verdade seja sempre o código vivo, não documentamos estaticamente as tipagens (Pydantic), campos exigidos ou formatos de resposta JSON neste ficheiro.
+- **Contexto Enxuto (`match_count`):** Para respeitar a janela de contexto do modelo e otimizar o consumo de tokens, os resultados aprovados são ordenados do maior para o menor `score_similaridade` e limitados à quantidade especificada em `match_count`.
 
-> **Documentação Viva:** Todos os contratos da API — incluindo validações de entrada, paginação, formatos de erro, tratamento de campos opcionais (nulos) e respostas de busca vetorial — estão mapeados e interativos via **OpenAPI**.
+#### Retorno para o Back-end
 
-Para integrações, consulte diretamente as rotas `/docs` (Swagger UI) ou `/redoc` do servidor FastAPI em execução para validar os contratos oficiais da aplicação.
+A função retorna apenas os elementos necessários para a composição do prompt enviado ao modelo de IA:
+
+- `id` da evidência;
+- `texto_extraido` correspondente ao discurso;
+- `score_similaridade` calculado na busca vetorial.
