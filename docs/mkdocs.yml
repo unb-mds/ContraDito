@@ -57,7 +57,7 @@ nav:
       - Como Executar o Projeto: execucao.md
       - Integração e API: api.md
       - Decisões Arquiteturais (ADRs): adrs/index.md
-
+      - Testes e Qualidade: qualidade.md
   -  Encerramento:
       - Avaliação Final: avaliacao.md
       - Próximos Passos (Roadmap): roadmap.md
