@@ -35,19 +35,12 @@ O *Score de Coerência* é uma nota de **[0 a 100]**, calculada com base no perc
 ---
 
 ## Limitações e Mitigações
-<<<<<<< HEAD
 
 Para garantir que o Score de Coerência seja aplicado de forma justa e tecnicamente viável, o sistema adota os seguintes parâmetros:
 
 * **Mitigação - Recorte Temporal (Legislatura Vigente):** Para mitigar os efeitos de mudanças naturais de posicionamento que ocorrem ao longo de carreiras políticas extensas, o sistema limita a coleta e análise de dados ao período do mandato atual (últimos 4 anos). Essa estratégia garante que o parlamentar seja avaliado com base em sua atuação e discursos recentes, evitando que opiniões de legislaturas passadas distorçam a percepção de sua coerência no contexto político presente.
 
 * **Limitação - Premissa de Validade e Complexidade Regimental:** O sistema opera sob a premissa de que todos os discursos proferidos dentro do intervalo de 4 anos são fontes válidas e representativas da postura do parlamentar. Uma limitação do projeto é a não consideração de nuances do contexto político-regimental complexo, como manobras de obstrução ou votos em "Destaques", que podem forçar um posicionamento nominal divergente da retórica por questões puramente técnicas. O motor NLP foca estritamente na relação semântica entre o discurso público e o voto registrado, sem interpretar justificativas de manobras de bastidor.
-=======
-Para garantir justiça e evitar punições por mudanças naturais de contexto:
-
-* **Fator Temporal:** Priorizamos cruzamentos entre discursos e votos próximos no tempo ou dentro da mesma legislatura.
-* **Contexto Político:** O motor LLM analisa se votos em "Destaques" ou manobras regimentais justificam uma aparente mudança de posicionamento, garantindo que a nota reflita a intenção real.
->>>>>>> 67fb53f7b46e01f9b91266c2bdf142512d091bf2
 
 ---
 
