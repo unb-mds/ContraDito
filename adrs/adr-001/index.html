@@ -11,28 +11,24 @@
       
       
       
-        <link rel="prev" href="../calculo-score/">
-      
-      
-        <link rel="next" href="../requisitos/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Transparência, LGPD e Dados - ContraDito</title>
+        <title>ADR 001: Migração de Arquitetura Zero-Shot para RAG (Busca Vetorial) - ContraDito</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,9 +47,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#transparencia-governanca-de-dados-e-lgpd" class="md-skip">
+        <a href="#adr-001-migracao-de-arquitetura-zero-shot-para-rag-busca-vetorial" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +88,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="ContraDito" class="md-header__button md-logo" aria-label="ContraDito" data-md-component="logo">
+    <a href="../.." title="ContraDito" class="md-header__button md-logo" aria-label="ContraDito" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Transparência, LGPD e Dados
+              ADR 001: Migração de Arquitetura Zero-Shot para RAG (Busca Vetorial)
             
           </span>
         </div>
@@ -213,7 +209,7 @@
     
     
       <li class="md-tabs__item">
-        <a href=".." class="md-tabs__link">
+        <a href="../.." class="md-tabs__link">
           
   
   
@@ -229,13 +225,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../manual/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../manual/" class="md-tabs__link">
           
   
   
@@ -255,7 +249,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../requisitos/" class="md-tabs__link">
+        <a href="../../requisitos/" class="md-tabs__link">
           
   
   
@@ -275,7 +269,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../arquitetura/" class="md-tabs__link">
+        <a href="../../arquitetura/" class="md-tabs__link">
           
   
   
@@ -295,7 +289,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../execucao/" class="md-tabs__link">
+        <a href="../../execucao/" class="md-tabs__link">
           
   
   
@@ -315,7 +309,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../roadmap/" class="md-tabs__link">
+        <a href="../../roadmap/" class="md-tabs__link">
           
   
   
@@ -349,7 +343,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="ContraDito" class="md-nav__button md-logo" aria-label="ContraDito" data-md-component="logo">
+    <a href="../.." title="ContraDito" class="md-nav__button md-logo" aria-label="ContraDito" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -417,7 +411,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -445,7 +439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../escopo/" class="md-nav__link">
+      <a href="../../escopo/" class="md-nav__link">
         
   
   
@@ -477,29 +471,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -517,7 +506,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -535,7 +524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../manual/" class="md-nav__link">
+      <a href="../../manual/" class="md-nav__link">
         
   
   
@@ -563,7 +552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../calculo-score/" class="md-nav__link">
+      <a href="../../calculo-score/" class="md-nav__link">
         
   
   
@@ -588,37 +577,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Transparência, LGPD e Dados
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../lgpd/" class="md-nav__link">
         
   
   
@@ -634,76 +596,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-governanca-na-analise-de-dados-publicos-o-alvo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Governança na Análise de Dados Públicos (O Alvo)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-privacidade-e-protecao-do-cidadao-o-usuario" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Privacidade e Proteção do Cidadão (O Usuário)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2. Privacidade e Proteção do Cidadão (O Usuário)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#quais-dados-coletamos-e-por-que" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quais dados coletamos e por quê?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#compartilhamento-de-dados-e-natureza-do-projeto" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Compartilhamento de Dados e Natureza do Projeto
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -773,7 +665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../requisitos/" class="md-nav__link">
+      <a href="../../requisitos/" class="md-nav__link">
         
   
   
@@ -801,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ux/personas/" class="md-nav__link">
+      <a href="../../ux/personas/" class="md-nav__link">
         
   
   
@@ -829,7 +721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ux/prototipos/" class="md-nav__link">
+      <a href="../../ux/prototipos/" class="md-nav__link">
         
   
   
@@ -907,7 +799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sprints/sprint-0/" class="md-nav__link">
+      <a href="../../sprints/sprint-0/" class="md-nav__link">
         
   
   
@@ -935,7 +827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sprints/sprint-1/" class="md-nav__link">
+      <a href="../../sprints/sprint-1/" class="md-nav__link">
         
   
   
@@ -963,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sprints/sprint-2/" class="md-nav__link">
+      <a href="../../sprints/sprint-2/" class="md-nav__link">
         
   
   
@@ -991,7 +883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sprints/sprint-3/" class="md-nav__link">
+      <a href="../../sprints/sprint-3/" class="md-nav__link">
         
   
   
@@ -1019,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sprints/sprint-4/" class="md-nav__link">
+      <a href="../../sprints/sprint-4/" class="md-nav__link">
         
   
   
@@ -1047,7 +939,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sprints/sprint-5/" class="md-nav__link">
+      <a href="../../sprints/sprint-5/" class="md-nav__link">
         
   
   
@@ -1075,7 +967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sprints/sprint-6/" class="md-nav__link">
+      <a href="../../sprints/sprint-6/" class="md-nav__link">
         
   
   
@@ -1168,7 +1060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../arquitetura/" class="md-nav__link">
+      <a href="../../arquitetura/" class="md-nav__link">
         
   
   
@@ -1196,7 +1088,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend/" class="md-nav__link">
+      <a href="../../frontend/" class="md-nav__link">
         
   
   
@@ -1224,7 +1116,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../etl-dados/" class="md-nav__link">
+      <a href="../../etl-dados/" class="md-nav__link">
         
   
   
@@ -1252,7 +1144,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../supabase/" class="md-nav__link">
+      <a href="../../supabase/" class="md-nav__link">
         
   
   
@@ -1280,7 +1172,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../motor-nlp/" class="md-nav__link">
+      <a href="../../motor-nlp/" class="md-nav__link">
         
   
   
@@ -1365,7 +1257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../execucao/" class="md-nav__link">
+      <a href="../../execucao/" class="md-nav__link">
         
   
   
@@ -1393,7 +1285,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../integracaoapi/" class="md-nav__link">
+      <a href="../../integracaoapi/" class="md-nav__link">
         
   
   
@@ -1421,7 +1313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../adrs/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1449,7 +1341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qualidade/" class="md-nav__link">
+      <a href="../../qualidade/" class="md-nav__link">
         
   
   
@@ -1534,7 +1426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../roadmap/" class="md-nav__link">
+      <a href="../../roadmap/" class="md-nav__link">
         
   
   
@@ -1562,7 +1454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../links/" class="md-nav__link">
+      <a href="../../links/" class="md-nav__link">
         
   
   
@@ -1617,10 +1509,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-governanca-na-analise-de-dados-publicos-o-alvo" class="md-nav__link">
+  <a href="#1-contexto-e-problema" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Governança na Análise de Dados Públicos (O Alvo)
+        1. Contexto e Problema
       
     </span>
   </a>
@@ -1628,22 +1520,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-privacidade-e-protecao-do-cidadao-o-usuario" class="md-nav__link">
+  <a href="#2-decisao-arquitetural" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Privacidade e Proteção do Cidadão (O Usuário)
+        2. Decisão Arquitetural
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Privacidade e Proteção do Cidadão (O Usuário)">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-consequencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Consequências
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Consequências">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#quais-dados-coletamos-e-por-que" class="md-nav__link">
+  <a href="#pontos-positivos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quais dados coletamos e por quê?
+        Pontos Positivos:
       
     </span>
   </a>
@@ -1651,10 +1554,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#compartilhamento-de-dados-e-natureza-do-projeto" class="md-nav__link">
+  <a href="#trade-offs-custos-adicionais" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Compartilhamento de Dados e Natureza do Projeto
+        Trade-offs (Custos Adicionais):
       
     </span>
   </a>
@@ -1683,28 +1586,37 @@
 
 
 
-<h1 id="transparencia-governanca-de-dados-e-lgpd">Transparência, Governança de Dados e LGPD</h1>
-<p>O <strong>ContraDito</strong> possui um compromisso inegociável com a transparência pública, a ética algorítmica e a privacidade, operando em estrita conformidade com a <strong>Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018 - LGPD)</strong> e a <strong>Lei de Acesso à Informação (Lei nº 12.527/2011 - LAI)</strong>.</p>
-<p>Este documento estabelece as diretrizes de governança do sistema, divididas entre o tratamento dos dados públicos analisados e a proteção da privacidade do cidadão que utiliza a plataforma.</p>
+<h1 id="adr-001-migracao-de-arquitetura-zero-shot-para-rag-busca-vetorial">ADR 001: Migração de Arquitetura Zero-Shot para RAG (Busca Vetorial)</h1>
+<p><strong>Data:</strong> 21/04/2026</p>
+<p><strong>Status:</strong> Aceite (Implementado na Sprint 05)</p>
+<p><strong>Participantes:</strong> @henriquemendeselias, @jot4-ge, @luizhtmoreira, @G2SBiell, @lucasaraujoszz, @matheus0346</p>
 <hr />
-<h2 id="1-governanca-na-analise-de-dados-publicos-o-alvo">1. Governança na Análise de Dados Públicos (O Alvo)</h2>
-<p>O objetivo central do ContraDito é promover o controle social e evidenciar a aderência entre o discurso proferido e a prática legislativa de figuras públicas. Para garantir a total imparcialidade e legalidade do processo, adotamos as seguintes premissas:</p>
+<h2 id="1-contexto-e-problema">1. Contexto e Problema</h2>
+<p>O <strong>ContraDito</strong> iniciou com uma arquitetura onde o motor LLM (Llama 3 8B) atuava em formato <em>One-Shot/Zero-Shot</em>. O modelo recebia o texto bruto do discurso e deveria classificar o tema, inferir a postura e gerar um resumo em uma única requisição.</p>
+<p>Ao tentarmos escalar a base para os 513 deputados federais (Sprint 04), identificamos as seguintes falhas críticas:</p>
 <ul>
-<li><strong>Enquadramento Legal (LGPD e LAI):</strong> Embora a LGPD proteja dados de pessoas naturais, o processamento dos dados das autoridades políticas pela nossa plataforma ocorre sob as premissas do <strong>interesse público</strong> e da <strong>transparência ativa</strong> do Estado. O ContraDito atua com finalidade acadêmica, de pesquisa e controle social, enquadrando-se nas exceções do Artigo 4º da LGPD. Somente processamos dados estritamente relacionados ao exercício do mandato público (votos, discursos em plenário e propostas legislativas).</li>
-<li><strong>Fontes Primárias Oficiais:</strong> O pipeline de dados (ETL) não realiza raspagem de sites de terceiros ou portais de notícias. A ingestão ocorre exclusivamente através das APIs de Dados Abertos mantidas pela infraestrutura do Governo Federal (Câmara dos Deputados e Senado Federal).</li>
-<li><strong>Isenção Algorítmica (Score de Coerência):</strong> O cálculo do <em>Score de Coerência</em> não é uma avaliação subjetiva ou opinativa. A arquitetura utiliza <strong>RAG (Retrieval-Augmented Generation)</strong>, onde o motor de Inteligência Artificial opera como um leitor semântico. A pontuação é o resultado determinístico do cálculo de Similaridade de Cosseno em um banco de dados vetorial, que mede a distância matemática exata entre a intenção do discurso e o teor do voto registrado.</li>
-<li><strong>Rastreabilidade e Auditoria:</strong> Todas as contradições apontadas pelo sistema ("Provas de Contradição") são acompanhadas de links diretos para a fonte governamental original (vídeos, notas taquigráficas ou diários oficiais), permitindo a auditoria completa por qualquer cidadão.</li>
+<li><strong>Sobrecarga Cognitiva:</strong> O LLM não conseguia processar com precisão textos políticos altamente subjetivos, eufemísticos e longos.</li>
+<li><strong>Inconsistência de Dados:</strong> Ocorreram quebras frequentes na formatação de saída (JSON corrompido) e alucinações na correlação de contextos, gerando falsos positivos no Score de Coerência.</li>
 </ul>
-<hr />
-<h2 id="2-privacidade-e-protecao-do-cidadao-o-usuario">2. Privacidade e Proteção do Cidadão (O Usuário)</h2>
-<p>Se você é um cidadão navegando no ContraDito para fiscalizar seus representantes, a privacidade por padrão (<em>Privacy by Default</em>) é a nossa regra.</p>
-<h3 id="quais-dados-coletamos-e-por-que">Quais dados coletamos e por quê?</h3>
+<h2 id="2-decisao-arquitetural">2. Decisão Arquitetural</h2>
+<p>Decidimos abandonar a classificação e extração via LLM direto e pivotar para uma arquitetura baseada em <strong>Retrieval-Augmented Generation (RAG)</strong>, adotando Busca Vetorial no banco de dados.</p>
+<p>As mudanças técnicas acordadas foram:</p>
+<ol>
+<li><strong>Modelos de Embeddings (SBERT):</strong> Utilização do modelo <code>paraphrase-multilingual-mpnet-base-v2</code> no pipeline de extração para transformar leis e discursos limpos em vetores matemáticos de 768 dimensões.</li>
+<li><strong>Banco Vetorial:</strong> Ativação da extensão <code>pgvector</code> no Supabase com criação de índices HNSW.</li>
+<li><strong>Filtro de Similaridade:</strong> O cruzamento de dados ("Dito" vs "Feito") passa a ser calculado matematicamente via Similaridade de Cosseno diretamente no banco.</li>
+<li><strong>Redução do Escopo do LLM:</strong> O Llama 3 deixa de atuar como motor de busca. Ele agora recebe apenas o par filtrado (Ementa da Lei + Discurso correspondente) e dedica 100% do processamento para justificar textualmente a postura (A Favor, Contra, Neutro).</li>
+</ol>
+<h2 id="3-consequencias">3. Consequências</h2>
+<h3 id="pontos-positivos">Pontos Positivos:</h3>
 <ul>
-<li><strong>Minimização de Dados (MVP):</strong> Visando garantir o acesso irrestrito e democrático à informação, a arquitetura atual do sistema <strong>não exige criação de conta, login ou autenticação</strong>. Não solicitamos, capturamos ou processamos Dados Pessoais Identificáveis (PII), como e-mail, nome ou CPF dos visitantes.</li>
-<li><strong>Métricas de Navegação:</strong> Coletamos exclusivamente dados de telemetria básicos e anonimizados (ex: taxa de rejeição, tempo de carregamento de página) com a finalidade estrita de monitorar a estabilidade dos servidores e aprimorar a experiência de uso (UX).</li>
+<li><strong>Alta Precisão e Rastreabilidade:</strong> A eliminação de alucinações no cruzamento de dados, garantindo que o Score seja baseado em métricas matemáticas auditáveis.</li>
+<li><strong>Performance:</strong> A busca vetorial via índice HNSW é executada em milissegundos no banco de dados, aliviando a latência da API.</li>
 </ul>
-<h3 id="compartilhamento-de-dados-e-natureza-do-projeto">Compartilhamento de Dados e Natureza do Projeto</h3>
-<p><strong>O ContraDito não comercializa, aluga ou cede dados de tráfego para terceiros.</strong> O projeto tem raízes no ambiente acadêmico da Universidade de Brasília (UnB), concebido por estudantes de Engenharia de Software. Todo o ecossistema é mantido com o propósito exclusivo de fomentar a inovação cívica, o uso da Ciência de Dados para o bem público e o fortalecimento do Estado Democrático de Direito.</p>
+<h3 id="trade-offs-custos-adicionais">Trade-offs (Custos Adicionais):</h3>
+<ul>
+<li><strong>Complexidade de Infraestrutura:</strong> Exigiu a reestruturação do <code>docker-compose</code> para isolar dependências pesadas de IA (PyTorch e Sentence-Transformers) em um contêiner separado (Worker ETL), além de adaptações no script de <em>seeding</em> (Upsert de texto limpo + vetor numérico).</li>
+</ul>
 
 
 
@@ -1760,10 +1672,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
