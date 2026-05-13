@@ -36,6 +36,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add docs/productivity/metrics.json
+          git add docs/docs/productivity/metrics.json
           git commit -m "chore(metrics): update productivity metrics [skip ci]" || exit 0
           git push

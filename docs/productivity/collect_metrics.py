@@ -30,7 +30,7 @@ def main():
     if not token:
         print("GITHUB_TOKEN não encontrado. Gerando dados mockados para teste local.")
         # Se não houver token, manter os arrays vazios (ou usar o mock)
-        output_path = os.path.join(os.path.dirname(__file__), "metrics.json")
+        output_path = os.path.join(os.path.dirname(__file__), "..", "docs", "productivity", "metrics.json")
         with open(output_path, "w") as f:
             json.dump(metrics, f, indent=2)
         return
@@ -237,7 +237,7 @@ def main():
                     "ownership_percentage": round(ownership, 1)
                 })
 
-    output_path = os.path.join(os.path.dirname(__file__), "metrics.json")
+    output_path = os.path.join(os.path.dirname(__file__), "..", "docs", "productivity", "metrics.json")
     with open(output_path, "w") as f:
         json.dump(metrics, f, indent=2)
     print(f"Métricas coletadas e salvas em {output_path}")
