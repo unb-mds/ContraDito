@@ -1,6 +1,8 @@
 import math
-from fastapi import APIRouter, Query, HTTPException, Path
+from fastapi import APIRouter, Query, HTTPException, Path, Request
 from typing import Optional
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 from app.bancos.supabase import supabase
 from fastapi_cache import FastAPICache
 from fastapi_cache.decorator import cache
@@ -17,8 +19,8 @@ from app.modelos.schemas import (
 )
 from collections import defaultdict
 
+limiter = Limiter(key_func=get_remote_address)
 router = APIRouter(prefix="/api/politicos", tags=["Políticos"])
-
 
 @router.get(
     "",
@@ -158,7 +160,8 @@ def buscar_politico_detalhado(
         503: {"description": "Worker de NLP indisponível (Timeout)."},
     },
 )
-async def buscar_discursos_por_similaridade(requisicao: BuscaVetorialRequest):
+@limiter.limit("5/minute")
+async def buscar_discursos_por_similaridade(request: Request, requisicao: BuscaVetorialRequest):
     try:
         async with httpx.AsyncClient() as client:
             try:
@@ -206,7 +209,7 @@ async def buscar_discursos_por_similaridade(requisicao: BuscaVetorialRequest):
     "/interno/recalcular-scores",
     summary="Recalcula o Score de todos os políticos (Uso Interno)",
     description="Rota chamada pelo ETL após o cruzamento de dados. Aplica o RF15 e RF27, salvando o resultado direto na tabela 'politicos'.",
-    #include_in_schema=False # Esconde a rota do Swagger público
+    include_in_schema=False # Esconde a rota do Swagger público
 )
 def recalcular_todos_scores():
     try:
