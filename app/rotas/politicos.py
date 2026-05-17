@@ -15,6 +15,7 @@ from app.modelos.schemas import (
     BuscaVetorialRequest,
     ResultadoSimilaridade,
 )
+from collections import defaultdict
 
 router = APIRouter(prefix="/api/politicos", tags=["Políticos"])
 
@@ -200,3 +201,59 @@ async def buscar_discursos_por_similaridade(requisicao: BuscaVetorialRequest):
         raise HTTPException(
             status_code=500, detail=f"Erro interno na busca vetorial: {str(e)}"
         )
+
+@router.post(
+    "/interno/recalcular-scores",
+    summary="Recalcula o Score de todos os políticos (Uso Interno)",
+    description="Rota chamada pelo ETL após o cruzamento de dados. Aplica o RF15 e RF27, salvando o resultado direto na tabela 'politicos'.",
+    #include_in_schema=False # Esconde a rota do Swagger público
+)
+def recalcular_todos_scores():
+    try:
+        # 1. Puxa do banco apenas as provas que já passaram pela IA e pela Fase Lógica
+        resposta_db = supabase.table("provas_contradicao") \
+            .select("politico_id, status_coerencia, voto_oficial") \
+            .not_.is_("status_coerencia", "null") \
+            .execute()
+        
+        provas = resposta_db.data
+        
+        # 2. Agrupa o histórico de votos pelo ID do político
+        historico_por_politico = defaultdict(list)
+        for p in provas:
+            historico_por_politico[p["politico_id"]].append(p)
+        
+        # O limite que conversamos para o político não ficar com "Score Nulo"
+        VOLUME_MINIMO_ACEITAVEL = 3
+        
+        # 3. Varre o agrupamento de cada político
+        for id_politico, lista_provas in historico_por_politico.items():
+            votos_coerentes = 0
+            total_validos = 0
+            
+            for prova in lista_provas:
+                voto = str(prova.get("voto_oficial")).strip().upper()
+                
+                # RF27: Ignora abstenções e faltas (não entram no denominador)
+                if voto in ["AUSENTE", "ABSTENÇÃO", "ABSTENCAO", "NÃO COMPARECEU", "NONE", "NULL"]:
+                    continue
+                    
+                total_validos += 1
+                
+                # Conta os acertos
+                if prova.get("status_coerencia") is True:
+                    votos_coerentes += 1
+                    
+            # RF15: Avalia o volume de dados mínimos
+            if total_validos < VOLUME_MINIMO_ACEITAVEL:
+                score_final = None
+            else:
+                score_final = round((votos_coerentes / total_validos) * 100, 1)
+                
+            # 4. Grava o valor definitivo na tabela 'politicos'
+            supabase.table("politicos").update({"score_coerencia": score_final}).eq("id", id_politico).execute()
+            
+        return {"status": "sucesso", "mensagem": f"Scores de {len(historico_por_politico)} políticos recalculados."}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro interno ao recalcular scores: {str(e)}")
